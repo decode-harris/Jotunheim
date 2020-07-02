@@ -1,0 +1,162 @@
+/* global : reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* global : variables */
+:root {
+    
+    /* color */
+    --black: #000;
+    --white: #FFF;
+    --grey: #8B8B8B;
+    --main: #042331;
+
+    /* font */
+    --font-main: 'Josefin Sans', sans-serif;
+    --font-alt:  'Dosis', sans-serif;
+
+    /* text size */
+    --text-lg: 1.5rem;
+    --text-md: 1.3rem;
+    --text-sm: 1.1rem;
+
+    /* icon size */
+    --icon-lg: 2.2rem;
+    --icon-md: 1.8rem;
+    --icon-sm: 1.5rem;
+    
+    /* spacing */
+    --lg: 20%;
+    --md: 10%;
+    --sm: 5%;
+    
+    /* overlay */
+    --overlay-dark: rgba(0,0,0,0.5);
+    --overlay-lght: rgba(122, 122, 122, 0.5);
+    
+    /* dev borders */
+    --wireframe: 3px solid darkblue;
+    --component: 3px dotted darkgreen;
+    --debugging: 3px dotted darkred;
+
+}
+
+/* page */
+.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    position: relative;
+}
+.page nav,
+.page header,
+.page section,
+.page main,
+.page article,
+.page footer {
+    max-width: 1920px;
+}
+
+/* grids */
+nav,
+header,
+article,
+main,
+section,
+footer {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(25px, auto);
+    width: 100%;
+
+    border: var(--wireframe);
+}
+
+/* flex */
+.elmnts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: var(--debugging);
+}
+
+/* main */
+main {
+    min-height: 100vh;
+}
+main article {
+    grid-column: span 6;
+}
+article .elmnts {
+    grid-column: span 6;
+}
+
+
+/* app */
+#app {
+    background: var(--black);
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(25px, auto);
+
+    width: 100%;
+    height: 100%;
+}
+#app .elmnts {
+    grid-column: span 6;
+}
+#app #btn_exi {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+/* calendar */
+#calendar {
+    background: var(--white);
+    color: var(--black);
+
+    min-height: 20vh;
+}
+#calendar ul {
+    grid-column: span 3;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    padding: var(--sm);
+}
+#calendar li {
+    list-style-type: none;
+}
+
+/* form */
+form {
+    grid-column: span 6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+
+    color: var(--white);
+}
+form label {
+    color: var(--white);
+}
+form input {
+    height: 25px;
+}
