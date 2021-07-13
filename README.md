@@ -1,7 +1,9 @@
-# JOT
-JOTUNHEIM <br>
-Resort Website Redesign
+# JOTUNHEIM
+<br>
+A payment tracking application focusing on the current users active direct debits.
+<br>
+Can help manage spending, tracking & sort purchase habbits & setup repayments instantly.
 
-by Christopher Harris
+By Christopher Harris
 
 
