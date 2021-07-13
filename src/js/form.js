@@ -24,7 +24,7 @@ newPayment = (e) => {
     // event : prevent default form submit
     e.preventDefault();
 
-    // text the route
+    // test the route via altering submit button styles
     button.style.background = '#000';
     button.style.color = '#FFF';
 
@@ -116,7 +116,7 @@ newPayment = (e) => {
             itemsPayment.innerHTML = '$ ' + payment.value;
         }
 
-        // init function [ modalEvent ] : states.js
+        // init function [ modalEvent ] : modal.js
         modalEvent();
 
         // test end route
