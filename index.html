@@ -1,159 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="developer" content="Christhoper Harris">
-    <title>HolidayPlanner | Web App</title>
-
+    <meta name="developer" content="Christopher Harris">
+    
+    <!-- website title -->
+    <title>Payment Tracking Solutions</title>
+    
     <!-- css -->
     <link rel="stylesheet" href="src/css/index.css">
-    <!-- js -->
-    <script defer src="src/js/modal.js"></script>
-    <script defer src="src/js/app.js"></script>
-    <!-- libs -->
-    <script src="https://kit.fontawesome.com/4dff4a55ad.js" crossorigin="anonymous"></script>
-    <!-- fonts -->
-    
 
+    <!-- javascript [ form ] -->
+    <script defer src="src/js/form.js"></script>
+
+    <!-- javascript [ states ] -->
+    <script defer src="src/js/states.js"></script>
 </head>
 <body>
-<!-- page -->
-<div class="page">
 
-    <!-- main -->
-    <main id="main">
+    <!-- app -->
+    <div class="app">
 
-        <!-- article -->
-        <article class="article">
-            <!-- elmnts -->
-            <div class="elmnts">
-                <!-- launch -->
-                <button id="btn_lau">launch app</button>
-                <!-- launch -->
-            </div>
-            <div class="elmnts"></div>
-            <!-- elmnts -->
-        </article>
-        <!-- article -->
-    </main>
-    <!-- main -->
+        <!-- main -->
+        <main class="main">
 
-    <!-- modal -->
-    <div id="app" style="display:none">
-        
-        <!-- elmnts -->
-        <div class="elmnts" id="form">
-            
             <!-- form -->
-            <form>
-                <h2>HolidayPlanner</h2>
-                
-                <label for="cou" id="cou_lab">country</label>
-                <input type="text" name="cou" id="cou">
-                <label for="cit" id="cit_lab">city</label>
-                <input type="text" name="cit" id="cit">
-                <label for="hot" id="hot_lab">hotel</label>
-                <input type="text" name="hot" id="hot">
+            <form action="" class="form">
 
-                <button id="btn_pre">next</button>
-                <button id="btn_clr">clear</button>
+                <!-- label + input -->
+                <label for="company">company</label>
+                <input type="text" name="company" id="company">
+                <label for="description">description</label>
+                <input type="text" name="description" id="description">
+                <label for="payment">payment</label>
+                <input type="number" name="payment" id="payment" placeholder="$ ">
+                <!-- label + input -->
+
+                <!-- form button [ btn ] -->
+                <button class="btn">submit</button>
+                <!-- form button [ btn ] -->
+
+                <!-- form button [ show ] : hidden by default -->
+                <button class="show">list</button>
+                <!-- form button [ show ] : hidden by default -->
+            
             </form>
             <!-- form -->
 
-        </div>
-        <div class="elmnts" id="pre" style="display:none">
+            <!-- unordered list [ list ] : hidden by default -->
+            <ul class="list">
+                <!-- items -->
+                <li class="items" id="zero">
+                    <!-- company || business -->
+                    <span class="company"></span>
+                    <!-- company || business -->
 
-            <!-- list -->
-            <ul>
-                <h3>preview panel</h3>
-                <li><span id="cou_out"></span></li>
-                <li><span id="cit_out"></span></li>
-                <li><span id="hot_out"></span></li>
+                    <!-- purchase description -->
+                    <span class="description"></span>
+                    <!-- purchase description -->
+
+                    <!-- payment amount -->
+                    <span class="payment"></span>
+                    <!-- payment amount -->
+                </li>
+                <!-- items -->
+
+                <!-- btn [ open ] -->
+                <button class="open">open</button>
+                <!-- btn [ open ] -->
+
             </ul>
-            <!-- list -->
+            <!-- unordered list [ list ] : hidden by default -->
 
-            <!-- btn add -->
-            <button id="btn_add">add</button>
-            <!-- btn add -->
-        
-        </div>
-        <div class="elmnts" id="cal" style="display:none">
-            
-            <!-- calendar -->
-            <section id="calendar">
-                
-                <!-- output -->
+        </main>
+        <!-- main -->
 
-                <!-- output -->
-
-            </section>
-            <!-- calendar -->
-        
-        </div>
-        <!-- btn -->
-        <div class="elmnts" id="btn" style="display:none">
-            <!-- btn view -->
-            <button id="btn_vie">view</button>
-            <!-- btn view -->
-
-            <!-- btn new -->
-            <button id="btn_cre">create</button>
-            <!-- btn new -->
-            
-        </div>
-        <!-- btn -->
-        <!-- elmnts -->
-
-        <!-- btn exit -->
-        <button id="btn_exi"><i class="fas fa-times"></i></button>
-        <!-- btn exit -->
     </div>
-    <!-- modal -->
-    
+    <!-- app -->
 
-    <!-- controls -->
-    <aside class="controls" id="ctr" style="display:none">
-        <!-- list -->
-        <ul>
-            <!-- btns -->
-            <li><button id="btn_cre">create</button></li>
-            <li><button id="btn_rew">rewrite</button></li>
-            <li><button id="btn_upd">update</button></li>
-            <li><button id="btn_del">delete</button></li>
-            <!-- btns -->
-        </ul>
-        <!-- list -->
-
-    </aside>
-    <!-- controls -->
-
-</div>
-<!-- page -->
-
-
-<!-- list element -->
-
-<!-- 
-
-    <li>From <span id="start"></span></li>
-    <li>To <span id="end"></span></li>
-    <li><h3 id="cou"></h3></li>
-    <li><h5 id="cit"></h5></li>
-    <li><p>Staying at <span id="hot"></span></p></li>
-    
-
-
- -->
-
-
-
-
-
-
-
-
-
-
-
-
+</body>
+</html>

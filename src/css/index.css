@@ -1,162 +1,103 @@
-/* global : reset */
+/* css reset */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-/* global : variables */
-:root {
-    
-    /* color */
-    --black: #000;
-    --white: #FFF;
-    --grey: #8B8B8B;
-    --main: #042331;
 
-    /* font */
-    --font-main: 'Josefin Sans', sans-serif;
-    --font-alt:  'Dosis', sans-serif;
-
-    /* text size */
-    --text-lg: 1.5rem;
-    --text-md: 1.3rem;
-    --text-sm: 1.1rem;
-
-    /* icon size */
-    --icon-lg: 2.2rem;
-    --icon-md: 1.8rem;
-    --icon-sm: 1.5rem;
-    
-    /* spacing */
-    --lg: 20%;
-    --md: 10%;
-    --sm: 5%;
-    
-    /* overlay */
-    --overlay-dark: rgba(0,0,0,0.5);
-    --overlay-lght: rgba(122, 122, 122, 0.5);
-    
-    /* dev borders */
-    --wireframe: 3px solid darkblue;
-    --component: 3px dotted darkgreen;
-    --debugging: 3px dotted darkred;
-
-}
-
-/* page */
-.page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
+/* app wrapper */
+.app {
+    height: 100vh;
     width: 100%;
-    position: relative;
+    background: darkslategrey;
 }
-.page nav,
-.page header,
-.page section,
-.page main,
-.page article,
-.page footer {
-    max-width: 1920px;
-}
-
-/* grids */
-nav,
-header,
-article,
-main,
-section,
-footer {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-auto-rows: minmax(25px, auto);
-    width: 100%;
-
-    border: var(--wireframe);
-}
-
-/* flex */
-.elmnts {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    border: var(--debugging);
-}
-
-/* main */
+/* main wrapper */
 main {
-    min-height: 100vh;
-}
-main article {
-    grid-column: span 6;
-}
-article .elmnts {
-    grid-column: span 6;
-}
-
-
-/* app */
-#app {
-    background: var(--black);
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    grid-template-columns: repeat(6, 1fr);
-    grid-auto-rows: minmax(25px, auto);
-
-    width: 100%;
-    height: 100%;
-}
-#app .elmnts {
-    grid-column: span 6;
-}
-#app #btn_exi {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 50px;
-    height: 50px;
-}
-
-/* calendar */
-#calendar {
-    background: var(--white);
-    color: var(--black);
-
-    min-height: 20vh;
-}
-#calendar ul {
-    grid-column: span 3;
-
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-
-    padding: var(--sm);
+    background: #FFF;
+    height: 100%;
+    /* dev */
+    border: 2px solid red;
 }
-#calendar li {
-    list-style-type: none;
-}
 
-/* form */
+/* form component [ input view ] */
 form {
-    grid-column: span 6;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: flex-start;
-
-    color: var(--white);
+    padding: 12%;
+    height: 500px;
+    width: 100%;
+    /* dev */
+    border: 2px solid darkblue;
 }
 form label {
-    color: var(--white);
+    padding: 10px 0px;
+    font-size: 1.4em;
+    text-transform: capitalize;
 }
 form input {
-    height: 25px;
+    height: 45px;
+    width: 100%;
+    padding-left: 10px;
+    /* dev */
+    border: 3px solid #000;
+}
+form button,
+ul button {
+    border-radius: 10px;
+    font-size: 0.92rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 20px;
+    height: 35px;
+    width: 100%;
+    /* dev */
+    border: 3px solid red;
+}
+
+/* list component [ observation view ] */
+.list {
+    padding: 12%;
+    flex-direction: column;
+    width: 100%;
+}
+.list .items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(50px, auto);
+    width: 100%;
+    /* dev */
+    border: 2px solid red;
+}
+.list .items span {
+    border: 2px solid limegreen;
+}
+.items span:nth-child(1) { /* company or business name */
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.items span:nth-child(2) { /* purchase description */
+    grid-row-start: 2;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+.items span:nth-child(3) { /* payment value */
+    grid-column-start: 3;
+    grid-column-end: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.list button {
+    position: fixed;
+    left: 12%;
+    bottom: 12%;
+    max-width: 285px;
 }
