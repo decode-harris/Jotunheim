@@ -38,7 +38,7 @@ newPayment = (e) => {
     let payment = document.querySelector('#payment');
     console.log('paym as : ' + payment.value);// test user input
 
-    
+    // validate if company value is empty
     if (company.value === '' || company.value === null) {
 
         // alert the user to the current error
@@ -50,6 +50,7 @@ newPayment = (e) => {
 
         return
     }
+    // validate if description value is empty
     else if (description.value === '' || description.value === null) {
 
         // alert the user to the current error
@@ -61,6 +62,7 @@ newPayment = (e) => {
 
         return
     }
+    // validate if payment value is empty
     else if (payment.value === '' || payment.value === null) {
 
         // alert the user to the current error
@@ -72,12 +74,8 @@ newPayment = (e) => {
 
         return
     }
+    // submit the form & create a new list item
     else {
-
-        let i;
-
-        let items = document.querySelectorAll('.items');
-
         // select pre-set list sub elements
         let itemsCompany = document.querySelector('.items .company');
         let itemsDescription = document.querySelector('.items .description');
@@ -118,6 +116,9 @@ newPayment = (e) => {
             itemsPayment.innerHTML = '$ ' + payment.value;
         }
 
+        // init function [ modalEvent ] : states.js
+        modalEvent();
+
         // test end route
         console.log('validation success');
     }
@@ -127,11 +128,10 @@ newPayment = (e) => {
     description.value = '';
     payment.value = '';
 
+    // revert the button styles to default
     button.style.background = '#FFF';
     button.style.color = '#000';
 
-    // init function [ check state ]
+    // init function [ check state ] : states.js
     checkState();
 }
-
-

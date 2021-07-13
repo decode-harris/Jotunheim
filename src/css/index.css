@@ -62,15 +62,21 @@ ul button {
 
 /* list component [ observation view ] */
 .list {
+    position: relative;
     padding: 12%;
     flex-direction: column;
+    /* height: 100%; */
     width: 100%;
+
+    max-width: 500px;
 }
 .list .items {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: minmax(50px, auto);
+    height: 100%;
     width: 100%;
+
     /* dev */
     border: 2px solid red;
 }
@@ -98,6 +104,46 @@ ul button {
 .list button {
     position: fixed;
     left: 12%;
-    bottom: 12%;
+    bottom: 8%;
     max-width: 285px;
+    /* max-width: 100%; */
+}
+
+/* modal component */
+.modal {
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.modal article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8%;
+    background: lightgray;
+    height: 50%;
+    width: 100%;
+    /* dev */
+    border: 2px solid purple;
+}
+.modal article h2 {
+    font-size: 2rem;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+.modal article .text {
+    font-style: italic;
+    line-height: 1.6;
+    padding-left: 10px;
+    margin-bottom: 10px;
 }

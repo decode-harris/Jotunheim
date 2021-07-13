@@ -1,44 +1,54 @@
-// selector [ app ] : app
-let app = document.querySelector('#app');
+// application component
+const app = document.querySelector('.app');
 
-// selector [ btn_lau ] : launch btn
-let btn_lau = document.querySelector('#btn_lau');
+// select the modal element
+let modal = document.querySelector('.modal');
+// provide default styles to modal
+modal.style.display = 'none';
 
-// event [ btn_lau ] : launch application
-btn_lau.addEventListener('click', ()=> {
-    
-    // validate app props
-    if (app.style.display == 'none') {
-        app.style.display = 'grid';
-    }
-    // default app props
-    else {
-        app.style.disply = 'none';
-    }
+// function [ modal event ] : display a modal
+modalEvent = () => {
 
-    // test
-    console.log('btn_lau activated');
+    // select all create list [ items ] li
+    let items = document.querySelectorAll('.items');
+    // test creation
+    console.log('modal items : ' + items.length);
 
-    return
-});
+    // forEach [ items ]
+    items.forEach(element => {
 
-// btn exit selector
-let btn_exi = document.querySelector('#btn_exi');
+        // click event [ items ]
+        element.addEventListener('click', ()=> {
 
-// exit app
-btn_exi.addEventListener('click', ()=> {
-    
-    // validate app props
-    if (app.style.display == 'grid') {
-        app.style.display = 'none';
-    }
-    // default app props
-    else {
-        app.style.display = 'flex';
-    }
+            // display the modal for user on click
+            modal.style.display = 'flex';
 
-    // test
-    console.log('btn_exi activated');
-    
-    return
-});
+            // set modal article values
+            let h2 = this.document.querySelector('.content .title');
+            let text = document.querySelector('.content .text');
+            let cost = document.querySelector('.content .cost');
+
+            // set modal elements
+            h2.innerHTML = element.querySelector('.company').innerHTML;
+            text.innerHTML = element.querySelector('.description').innerHTML;
+            cost.innerHTML = '$ ' + element.querySelector('.payment').innerHTML;
+
+            // select the exit button
+            let exit = document.querySelector('.exit');
+            
+            // click event [ exit ] : close modal
+            exit.addEventListener('click', ()=> {
+                // remove modal from view
+                modal.style.display = 'none';
+            });
+
+            // test
+            console.log('open items modal');
+
+        });
+    });
+
+}
+
+
+
