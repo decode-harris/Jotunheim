@@ -1,32 +1,43 @@
+/*
+    forms functions & properties
+
+        1. Selects the form HTML element for submission click event attachment.
+        2. Selects the list HTML element for attaching & appending < li > created elements. 
+
+    submitButton 
+        1. Prevents default form submission.
+        2. Initiates the validateForm function.
+
+    validateForm
+        1. Selects the form input elements.
+        2. Validates if user has made an entry.
+        3. Displays alert & provides helper focus functions to user.
+        4. Once input data is validated, initiate the populateStorage function.
+
+    
+*/
+
 // main form [ form ]
 const form = document.querySelector('form');
-// test form
-console.log(form);
 
 // select the unordered list [ list ] for appending new items
 const list = document.querySelector('.list');
 
 // form button [ btn ]
-const button = document.querySelector('.btn');
-// test button
-console.log(button);
+const submitButton = document.querySelector('#submitButton');
 
 // click event [ button ] : submit form values
-button.addEventListener('click', (e)=> {
+submitButton.addEventListener('click', (e)=> {
 
-    // init function [ newPayment + event ]
-    newPayment(e);
-})
-
-// function [ newPayment + event ] : validate application form
-newPayment = (e) => {
-
-    // event : prevent default form submit
+    // prevent default form submit
     e.preventDefault();
 
-    // test the route via altering submit button styles
-    button.style.background = '#000';
-    button.style.color = '#FFF';
+    // init function [ validate form ]
+    validateForm();
+});
+
+// function [ validate form ]
+validateForm = () => {
 
     // select form input elements
     let company = document.querySelector('#company');
@@ -74,64 +85,11 @@ newPayment = (e) => {
 
         return
     }
-    // submit the form & create a new list item
     else {
-        // select pre-set list sub elements
-        let itemsCompany = document.querySelector('.items .company');
-        let itemsDescription = document.querySelector('.items .description');
-        let itemsPayment = document.querySelector('.items .payment');
-
-        // validate if first items title [ company ] is not empty
-        if (itemsCompany.innerHTML != '') {
-
-            // create a HTML list [ li ] element
-            let newItems = document.createElement('li');
-            newItems.classList = 'items';
-            
-            // create a new title [ company ] element
-            let newItemsCompany = document.createElement('span');
-            newItemsCompany.classList = 'company';
-            newItemsCompany.innerHTML = company.value;
-            newItems.appendChild(newItemsCompany);
-            
-            // create a new text [ description ] element
-            let newItemsDescription = document.createElement('span');
-            newItemsDescription.classList = 'description';
-            newItemsDescription.innerHTML = description.value;
-            newItems.appendChild(newItemsDescription);
-
-            // create a new number / text [ payment ] element
-            let newItemsPayment = document.createElement('span');
-            newItemsPayment.classList = 'payment';
-            newItemsPayment.innerHTML = '$ ' + payment.value;
-            newItems.appendChild(newItemsPayment);
-
-            // append all 'new' elements to HTML list [ li ] element
-            list.appendChild(newItems);
-        }
-        else {
-            // set the pre-set list sub elements to current values
-            itemsCompany.innerHTML = company.value;
-            itemsDescription.innerHTML = description.value;
-            itemsPayment.innerHTML = '$ ' + payment.value;
-        }
-
-        // init function [ modalEvent ] : modal.js
-        modalEvent();
-
-        // test end route
-        console.log('validation success');
+        // init function [ populate storage ] : app.js
+        populateStorage();
     }
 
-    // reset form values
-    company.value = '';
-    description.value = '';
-    payment.value = '';
-
-    // revert the button styles to default
-    button.style.background = '#FFF';
-    button.style.color = '#000';
-
-    // init function [ check state ] : states.js
-    checkState();
+    // test route [ click event --> validateForm ]
+    console.log('validation success');
 }

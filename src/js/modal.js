@@ -6,6 +6,8 @@ let modal = document.querySelector('.modal');
 // provide default styles to modal
 modal.style.display = 'none';
 
+
+
 // function [ modal event ] : display a modal
 modalEvent = () => {
 
@@ -22,11 +24,6 @@ modalEvent = () => {
 
             // display the modal for user on click
             modal.style.display = 'flex';
-
-            // set modal article values
-            let h2 = this.document.querySelector('.content .title');
-            let text = document.querySelector('.content .text');
-            let cost = document.querySelector('.content .cost');
 
             // set modal elements
             h2.innerHTML = element.querySelector('.company').innerHTML;

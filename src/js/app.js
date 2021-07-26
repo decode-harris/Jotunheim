@@ -1,365 +1,460 @@
-// selector [ form ] : form inputs
-let cou = document.querySelector('#cou');
-let cit = document.querySelector('#cit');
-let hot = document.querySelector('#hot');
-// let beg = document.querySelector('#beg');
-// let end = document.querySelector('#end');
+// function [ storage available ]
+function storageAvailable(type) {
+    let storage;
 
-// selector [ btn_pre ] : btn preview 
-let btn_pre = document.querySelector('#btn_pre');
+    // try / catch validation method
+    try {
+        storage = window[type];
+        let x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch(e) {
+        return e instanceof DOMException && (
+            // everything except Firefox
+            e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
 
-// event [ btn_pre ] : add form info
-btn_pre.addEventListener('click', (e)=> {
-    
-    // prevent form submit
-    e.preventDefault();
+            // test name field aswell, code may not be present 
+            
+            // everything except Firefox
+            e.name === 'QuatoaExceededError' ||
+            // Firefox
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
 
-    // init [ runSys ]
-    runSys();
+            // acknowledge QuatoaExceededError only if thers something already stored
+            (storage && storage.length !== 0);
+    }
+}
+
+// test if local storage is avaiable
+if (storageAvailable('localStorage')) {
 
     // test
-    console.log('btn pre active');
+    console.log('local storage available');
+
+}
+else {
+    // test
+    console.log('no storage available');
+}
+
+// select the button [ open ] on the unordered list element
+let open = document.querySelector('.open'); // change to new-button on final build
+
+// click event [ open ] : open the form
+open.addEventListener('click', ()=> {
+    // display the form
+    form.style.display = 'flex';
+    // hide the list
+    list.style.display = 'none';
+    // display the show button
+    show.style.display = 'block';
 
 });
 
-// function [ runSys ] : run system
-function runSys() {
-    
-    // init [ runVal ]
-    runVal();
+// select the button [ show ] on the user form element
+let show = document.querySelector('.show'); // change to new-form on final build
+// apply default button state
+show.style.display = 'none';
 
-    // test
-    console.log('function [ runSys ] running');
-}
+// click event [ show ] : show the list
+show.addEventListener('click', (e)=> {
 
-// function [ runVal ] : run validation
-function runVal() {
+    // prevent form submit
+    e.preventDefault();
 
-    // validate input values
-    if (cou.value == '' || cou.value == null) {
+    // validate if grid properties are present
+    if (list.style.gap === '10px') {
 
-        // form helper message
-        let helper = document.createElement('span');
-        helper.innerHTML = 'please fill in a country';
+        // display list as grid
+        list.style.display = 'grid';
 
-        // form label value
-        let cou_lab = document.querySelector('#cou_lab');
-        cou_lab.innerHTML = helper.innerHTML;
-        
-        // form input props
-        cou.style.border = '2px solid red';
-        cou.style.height = '50px';
-        
-        // focus form input
-        cou.focus();
-        
         // test
-        console.log('cou input is null');
-
-        return
+        console.log('list is displayed as grid');
     }
-    if (cit.value == '' || cit.value == null) {
-
-        // form helper message
-        let helper = document.createElement('span');
-        helper.innerHTML = 'please fill in a city';
-
-        // form label value
-        let cit_lab = document.querySelector('#cit_lab');
-        cit_lab.innerHTML = helper.innerHTML;
-        
-        // form input props
-        cit.style.border = '2px solid red';
-        cit.style.height = '50px';
-        
-        // focus form input
-        cit.focus();
-        
-        // test
-        console.log('cit input is null');
-
-        return
-    }
-    if (hot.value == '' || hot.value == null) {
-
-        // form helper message
-        let helper = document.createElement('span');
-        helper.innerHTML = 'please fill in a hotel';
-
-        // form label value
-        let hot_lab = document.querySelector('#hot_lab');
-        hot_lab.innerHTML = helper.innerHTML;
-        
-        // form input props
-        hot.style.border = '2px solid red';
-        hot.style.height = '50px';
-        
-        // focus form input
-        hot.focus();
-        
-        // test
-        console.log('hot input is null');
-
-        return
-    }
-    // once validation passes, run application
     else {
-
-        // init runApp
-        runApp();
+        // display list as flex
+        list.style.display = 'flex';
     }
 
-    // test
-    console.log('function [ runVal ] running');
-
+    // hide the form
+    form.style.display = 'none';
+    
     return
-}
 
-// function [ runApp ] : run application
-function runApp() {
+});
+
+
+
+
+
+
+
+// // selector [ form ] : form inputs
+// let cou = document.querySelector('#cou');
+// let cit = document.querySelector('#cit');
+// let hot = document.querySelector('#hot');
+// // let beg = document.querySelector('#beg');
+// // let end = document.querySelector('#end');
+
+// // selector [ btn_pre ] : btn preview 
+// let btn_pre = document.querySelector('#btn_pre');
+
+// // event [ btn_pre ] : add form info
+// btn_pre.addEventListener('click', (e)=> {
     
-    // selector [ form ] : form container
-    let form = document.querySelector('#form');
+//     // prevent form submit
+//     e.preventDefault();
+
+//     // init [ runSys ]
+//     runSys();
+
+//     // test
+//     console.log('btn pre active');
+
+// });
+
+// // function [ runSys ] : run system
+// function runSys() {
     
-    // remove element
-    if (form.style.display != 'none' || form.style.display != null) {
-        form.style.display = 'none';
-    }
+//     // init [ runVal ]
+//     runVal();
+
+//     // test
+//     console.log('function [ runSys ] running');
+// }
+
+// // function [ runVal ] : run validation
+// function runVal() {
+
+//     // validate input values
+//     if (cou.value == '' || cou.value == null) {
+
+//         // form helper message
+//         let helper = document.createElement('span');
+//         helper.innerHTML = 'please fill in a country';
+
+//         // form label value
+//         let cou_lab = document.querySelector('#cou_lab');
+//         cou_lab.innerHTML = helper.innerHTML;
+        
+//         // form input props
+//         cou.style.border = '2px solid red';
+//         cou.style.height = '50px';
+        
+//         // focus form input
+//         cou.focus();
+        
+//         // test
+//         console.log('cou input is null');
+
+//         return
+//     }
+//     if (cit.value == '' || cit.value == null) {
+
+//         // form helper message
+//         let helper = document.createElement('span');
+//         helper.innerHTML = 'please fill in a city';
+
+//         // form label value
+//         let cit_lab = document.querySelector('#cit_lab');
+//         cit_lab.innerHTML = helper.innerHTML;
+        
+//         // form input props
+//         cit.style.border = '2px solid red';
+//         cit.style.height = '50px';
+        
+//         // focus form input
+//         cit.focus();
+        
+//         // test
+//         console.log('cit input is null');
+
+//         return
+//     }
+//     if (hot.value == '' || hot.value == null) {
+
+//         // form helper message
+//         let helper = document.createElement('span');
+//         helper.innerHTML = 'please fill in a hotel';
+
+//         // form label value
+//         let hot_lab = document.querySelector('#hot_lab');
+//         hot_lab.innerHTML = helper.innerHTML;
+        
+//         // form input props
+//         hot.style.border = '2px solid red';
+//         hot.style.height = '50px';
+        
+//         // focus form input
+//         hot.focus();
+        
+//         // test
+//         console.log('hot input is null');
+
+//         return
+//     }
+//     // once validation passes, run application
+//     else {
+
+//         // init runApp
+//         runApp();
+//     }
+
+//     // test
+//     console.log('function [ runVal ] running');
+
+//     return
+// }
+
+// // function [ runApp ] : run application
+// function runApp() {
     
-    // create information view
-    runInf();
-
-    // test for validation
-    app.style.background = 'red';
-
-    // test
-    console.log('function [ runApp ] running');
-
-}
-
-// function [ runInf ] : run preview
-function runInf() {
+//     // selector [ form ] : form container
+//     let form = document.querySelector('#form');
     
-    // selector [ pre ] : preview container
-    let pre = document.querySelector('#pre');
-
-    // show element
-    if (pre.style.display == 'none') {
-        pre.style.display = 'flex';
-    }
+//     // remove element
+//     if (form.style.display != 'none' || form.style.display != null) {
+//         form.style.display = 'none';
+//     }
     
-    // selector [ output ] : output preview information
-    let cou_out = document.querySelector('#cou_out');
-    let cit_out = document.querySelector('#cit_out');
-    let hot_out = document.querySelector('#hot_out');
+//     // create information view
+//     runInf();
+
+//     // test for validation
+//     app.style.background = 'red';
+
+//     // test
+//     console.log('function [ runApp ] running');
+
+// }
+
+// // function [ runInf ] : run preview
+// function runInf() {
     
-    // assign input values to output html
-    cou_out.innerHTML = cou.value;
-    cit_out.innerHTML = cit.value;
-    hot_out.innerHTML = hot.value;
+//     // selector [ pre ] : preview container
+//     let pre = document.querySelector('#pre');
 
-    // test
-    console.log('function [ runInf ] running');
-
-}
-
-// selector [ btn_add ] : btn add
-let btn_add = document.querySelector('#btn_add');
-
-// event [ btn_add ] : add form information
-btn_add.addEventListener('click', ()=>{
+//     // show element
+//     if (pre.style.display == 'none') {
+//         pre.style.display = 'flex';
+//     }
     
-    // selector [ cal ] : calendar container
-    let cal = document.querySelector('#cal');
+//     // selector [ output ] : output preview information
+//     let cou_out = document.querySelector('#cou_out');
+//     let cit_out = document.querySelector('#cit_out');
+//     let hot_out = document.querySelector('#hot_out');
+    
+//     // assign input values to output html
+//     cou_out.innerHTML = cou.value;
+//     cit_out.innerHTML = cit.value;
+//     hot_out.innerHTML = hot.value;
 
-    let btn = document.querySelector('#btn');
+//     // test
+//     console.log('function [ runInf ] running');
 
-    // validate cal props
-    if (cal.style.display == 'none' || cal.style.display == null) {
-        // show cal
-        cal.style.display = 'flex';
+// }
 
-        // show btn
-        btn.style.display = 'flex';
+// // selector [ btn_add ] : btn add
+// let btn_add = document.querySelector('#btn_add');
 
-        // remove pre
-        pre.style.display = 'none';
+// // event [ btn_add ] : add form information
+// btn_add.addEventListener('click', ()=>{
+    
+//     // selector [ cal ] : calendar container
+//     let cal = document.querySelector('#cal');
 
-        // remove form
-        form.style.display = 'none';
+//     let btn = document.querySelector('#btn');
+
+//     // validate cal props
+//     if (cal.style.display == 'none' || cal.style.display == null) {
+//         // show cal
+//         cal.style.display = 'flex';
+
+//         // show btn
+//         btn.style.display = 'flex';
+
+//         // remove pre
+//         pre.style.display = 'none';
+
+//         // remove form
+//         form.style.display = 'none';
 
         
 
 
-    }
-    else {
-        cal.style.display = 'none';
-    }
+//     }
+//     else {
+//         cal.style.display = 'none';
+//     }
     
-    // init [ viewCal ]
-    viewCal();
+//     // init [ viewCal ]
+//     viewCal();
 
-    // test
-    console.log('event [ btn_add ] : run [ viewCal ]');
+//     // test
+//     console.log('event [ btn_add ] : run [ viewCal ]');
 
-});
+// });
 
-// function [ viewCal ] : calender view
-function viewCal() {
+// // function [ viewCal ] : calender view
+// function viewCal() {
 
-    // selector [ calendar ] : calendar grid
-    let calendar = document.querySelector('#calendar');
+//     // selector [ calendar ] : calendar grid
+//     let calendar = document.querySelector('#calendar');
 
-    // selector [ output ] : output preview information
-    let cou_out = document.querySelector('#cou_out');
-    let cit_out = document.querySelector('#cit_out');
-    let hot_out = document.querySelector('#hot_out');
+//     // selector [ output ] : output preview information
+//     let cou_out = document.querySelector('#cou_out');
+//     let cit_out = document.querySelector('#cit_out');
+//     let hot_out = document.querySelector('#hot_out');
 
-    // create destination list
-    let ul = document.createElement('ul');
+//     // create destination list
+//     let ul = document.createElement('ul');
 
-    // create destination list info
-    let li_cou = document.createElement('li');
-    let li_cit = document.createElement('li');
-    let li_hot = document.createElement('li');
+//     // create destination list info
+//     let li_cou = document.createElement('li');
+//     let li_cit = document.createElement('li');
+//     let li_hot = document.createElement('li');
 
-    // assign destination list info
-    li_cou.innerHTML = cou.value;
-    li_cit.innerHTML = cit.value;
-    li_hot.innerHTML = hot.value;
+//     // assign destination list info
+//     li_cou.innerHTML = cou.value;
+//     li_cit.innerHTML = cit.value;
+//     li_hot.innerHTML = hot.value;
 
-    // append list items to ul
-    ul.appendChild(li_cou);
-    ul.appendChild(li_cit);
-    ul.appendChild(li_hot);
+//     // append list items to ul
+//     ul.appendChild(li_cou);
+//     ul.appendChild(li_cit);
+//     ul.appendChild(li_hot);
 
-    // append ul to calendar
-    calendar.appendChild(ul);
+//     // append ul to calendar
+//     calendar.appendChild(ul);
 
-    // test
-    console.log('function [ viewCal ] running');
+//     // test
+//     console.log('function [ viewCal ] running');
 
-}
+// }
 
-// selector [ btn_cre ] : create button
-let btn_cre = document.querySelector('#btn_cre');
+// // selector [ btn_cre ] : create button
+// let btn_cre = document.querySelector('#btn_cre');
 
-// event [ btn_cre ] : new form view
-btn_cre.addEventListener('click', ()=>{
-    // selector [ pre ] : preview container
-    let pre = document.querySelector('#pre');
+// // event [ btn_cre ] : new form view
+// btn_cre.addEventListener('click', ()=>{
+//     // selector [ pre ] : preview container
+//     let pre = document.querySelector('#pre');
 
-    // remove pre 
-    if (pre.style.display != 'none' || pre.style.display != null) {
-        pre.style.display = 'none';
-    }
+//     // remove pre 
+//     if (pre.style.display != 'none' || pre.style.display != null) {
+//         pre.style.display = 'none';
+//     }
 
-    // selector [ cal ] : calendar container
-    let cal = document.querySelector('#cal');
+//     // selector [ cal ] : calendar container
+//     let cal = document.querySelector('#cal');
 
-    // remove cal 
-    if (cal.style.display != 'none' || cal.style.display != null) {
-        cal.style.display = 'none';
-    }
+//     // remove cal 
+//     if (cal.style.display != 'none' || cal.style.display != null) {
+//         cal.style.display = 'none';
+//     }
     
-    // selector [ form ] : form container
-    let form = document.querySelector('#form');
+//     // selector [ form ] : form container
+//     let form = document.querySelector('#form');
     
-    // show form
-    if (form.style.display == 'none' || form.style.display == null) {
-        form.style.display = 'flex';
+//     // show form
+//     if (form.style.display == 'none' || form.style.display == null) {
+//         form.style.display = 'flex';
 
-        // reset form input
-        cou.value = '';
-        cit.value = ''
-        hot.value = '';
+//         // reset form input
+//         cou.value = '';
+//         cit.value = ''
+//         hot.value = '';
 
-        // reset for label
-        cou_lab.innerHTML = 'country';
-        cit_lab.innerHTML = 'city';
-        hot_lab.innerHTML = 'hotel';
+//         // reset for label
+//         cou_lab.innerHTML = 'country';
+//         cit_lab.innerHTML = 'city';
+//         hot_lab.innerHTML = 'hotel';
 
-    }
-    else {
-        form.style.display = 'none';
-    }
+//     }
+//     else {
+//         form.style.display = 'none';
+//     }
 
-    // test
-    console.log('event [ btn_cre ] : form new');
+//     // test
+//     console.log('event [ btn_cre ] : form new');
 
-});
+// });
 
 
-// selector [ btn_clr ] : clear btn
-let btn_clr = document.querySelector('#btn_clr');
+// // selector [ btn_clr ] : clear btn
+// let btn_clr = document.querySelector('#btn_clr');
 
-// event [ btn_clr ] : clear form input
-btn_clr.addEventListener('click', (e)=>{
+// // event [ btn_clr ] : clear form input
+// btn_clr.addEventListener('click', (e)=>{
 
-    // prevent form submit
-    e.preventDefault();
+//     // prevent form submit
+//     e.preventDefault();
 
-    // reset form input
-    cou.value = '';
-    cit.value = ''
-    hot.value = '';
+//     // reset form input
+//     cou.value = '';
+//     cit.value = ''
+//     hot.value = '';
 
-    // reset input size
-    cou.style.height = '25px';
-    cit.style.height = '25px';
-    hot.style.height = '25px';
+//     // reset input size
+//     cou.style.height = '25px';
+//     cit.style.height = '25px';
+//     hot.style.height = '25px';
 
-    // reset border
-    cou.style.border = '2px solid var(--black)';
-    cit.style.border = '2px solid var(--black)';
-    hot.style.border = '2px solid var(--black)';
+//     // reset border
+//     cou.style.border = '2px solid var(--black)';
+//     cit.style.border = '2px solid var(--black)';
+//     hot.style.border = '2px solid var(--black)';
 
-    // reset for label
-    cou_lab.innerHTML = 'country';
-    cit_lab.innerHTML = 'city';
-    hot_lab.innerHTML = 'hotel';
+//     // reset for label
+//     cou_lab.innerHTML = 'country';
+//     cit_lab.innerHTML = 'city';
+//     hot_lab.innerHTML = 'hotel';
 
     
 
-    // test
-    console.log('event [ btn_clr ] : form cleared');
+//     // test
+//     console.log('event [ btn_clr ] : form cleared');
 
-});
-
-
+// });
 
 
 
-    // use code for calender view
 
-    // let ul = document.createElement('ul');
 
-    // let li_cou = document.createElement('li');
-    // let li_cit = document.createElement('li');
-    // let li_hot = document.createElement('li');
+//     // use code for calender view
 
-    // li_cou.innerHTML = cou.value;
-    // li_cit.innerHTML = cit.value;
-    // li_hot.innerHTML = hot.value;
+//     // let ul = document.createElement('ul');
 
-    // ul.appendChild(li_cou);
-    // ul.appendChild(li_cit);
-    // ul.appendChild(li_hot);
+//     // let li_cou = document.createElement('li');
+//     // let li_cit = document.createElement('li');
+//     // let li_hot = document.createElement('li');
 
-    // pre.appendChild(ul);
+//     // li_cou.innerHTML = cou.value;
+//     // li_cit.innerHTML = cit.value;
+//     // li_hot.innerHTML = hot.value;
 
-    // for(let i = 0; i < info.length; i++) {
-    //     console.log(info[i]);
-    // }
+//     // ul.appendChild(li_cou);
+//     // ul.appendChild(li_cit);
+//     // ul.appendChild(li_hot);
 
-    // object [ list ] : create list elment
-    // let list = {
+//     // pre.appendChild(ul);
+
+//     // for(let i = 0; i < info.length; i++) {
+//     //     console.log(info[i]);
+//     // }
+
+//     // object [ list ] : create list elment
+//     // let list = {
     
-    //     // create ul
-    //     function() {
-    //         document.createElement(ul);
-    //     }
+//     //     // create ul
+//     //     function() {
+//     //         document.createElement(ul);
+//     //     }
 
-    // }
+//     // }
 
-    // let ul = new(this.list);
+//     // let ul = new(this.list);

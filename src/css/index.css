@@ -59,6 +59,20 @@ ul button {
     /* dev */
     border: 3px solid red;
 }
+.editForm {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: red;
+}
+form .buttons {
+    display: flex;
+
+    width: 100%;
+    /* dev */
+    border: 3px solid red;
+}
+
 
 /* list component [ observation view ] */
 .list {
@@ -76,13 +90,15 @@ ul button {
     grid-auto-rows: minmax(50px, auto);
     height: 100%;
     width: 100%;
-
+    z-index: 100;
     /* dev */
     border: 2px solid red;
 }
-.list .items span {
-    border: 2px solid limegreen;
+
+.list .active {
+
 }
+
 .items span:nth-child(1) { /* company or business name */
     grid-column-start: 1;
     grid-column-end: 3;
@@ -109,41 +125,20 @@ ul button {
     /* max-width: 100%; */
 }
 
-/* modal component */
-.modal {
-    background: rgba(0, 0, 0, 0.5);
-    height: 100%;
-    width: 100%;
 
+.overlay {
     position: absolute;
     top: 0;
     left: 0;
+    height: 100%;
+    width: 0%;
+    background: rgba(0, 0, 0, 0.5);
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    transition: all 320ms ease-out;
 }
-.modal article {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 8%;
-    background: lightgray;
-    height: 50%;
+.active {
     width: 100%;
-    /* dev */
-    border: 2px solid purple;
+
+    transition: all 200ms ease-in-out;
 }
-.modal article h2 {
-    font-size: 2rem;
-    text-decoration: underline;
-    margin-bottom: 10px;
-}
-.modal article .text {
-    font-style: italic;
-    line-height: 1.6;
-    padding-left: 10px;
-    margin-bottom: 10px;
-}
+

@@ -12,14 +12,26 @@
     <!-- css -->
     <link rel="stylesheet" href="src/css/index.css">
 
-    <!-- javascript [ form ] -->
-    <script defer src="src/js/form.js"></script>
+    <!-- javascript [ app ] -->
+    <script defer src="src/js/app.js"></script>
 
     <!-- javascript [ states ] -->
     <script defer src="src/js/states.js"></script>
 
+    <!-- javascript [ form ] -->
+    <script defer src="src/js/form.js"></script>
+
+    <!-- javascript [ list ] -->
+    <script defer src="src/js/list.js"></script>
+
     <!-- javascript [ modal ] -->
     <script defer src="src/js/modal.js"></script>
+
+    <!-- javascript [ edit ] -->
+    <script defer src="src/js/edit.js"></script>
+
+    <!-- javascript [ test ] -->
+    <script defer src="dev.test.js"></script>
 
 
 </head>
@@ -44,7 +56,7 @@
                 <!-- label + input -->
 
                 <!-- form button [ btn ] -->
-                <button class="btn">submit</button>
+                <button class="btn" id="submitButton">submit</button>
                 <!-- form button [ btn ] -->
 
                 <!-- form button [ show ] : hidden by default -->
@@ -56,22 +68,7 @@
 
             <!-- unordered list [ list ] : hidden by default -->
             <ul class="list">
-                <!-- items -->
-                <li class="items" id="zero">
-                    <!-- company || business -->
-                    <span class="company"></span>
-                    <!-- company || business -->
-
-                    <!-- purchase description -->
-                    <span class="description"></span>
-                    <!-- purchase description -->
-
-                    <!-- payment amount -->
-                    <span class="payment"></span>
-                    <!-- payment amount -->
-                </li>
-                <!-- items -->
-
+                
                 <!-- btn [ open ] -->
                 <button class="open">open</button>
                 <!-- btn [ open ] -->
@@ -93,6 +90,38 @@
                 <p class="cost"></p>
                 <!-- article elements -->
 
+                <!-- button [ edit ] -->
+                <button class="edit">edit</button>
+                <!-- button [ edit ] -->
+
+
+                <!-- edit form -->
+                <form action="" class="editForm">
+
+                    <!-- label + input -->
+                    <label for="companyEdit">company</label>
+                    <input type="text" name="companyEdit" id="companyEdit">
+                    <label for="descriptionEdit">description</label>
+                    <input type="text" name="descriptionEdit" id="descriptionEdit">
+                    <label for="paymentEdit">payment</label>
+                    <input type="number" name="paymentEdit" id="paymentEdit" placeholder="$ ">
+                    <!-- label + input -->
+
+                   <!-- buttons -->
+                    <div class="buttons">
+                        <!-- button [ save ] -->
+                        <button class="save" id="save">save</button>
+                        <!-- button [ save ] -->
+
+                        <!-- button [ delete ] -->
+                        <button class="delete" id="delete">delete</button>
+                        <!-- button [ delete ] -->
+                    </div>
+                    <!-- buttons -->
+                    
+
+                </form>
+                <!-- edit form -->
             </article>
             <!-- article [ content ] -->
 
