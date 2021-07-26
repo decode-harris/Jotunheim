@@ -1,3 +1,16 @@
+/*
+    edit functions & properties
+
+    editingForm
+        1. Get current selected item values.
+        2. Display the edit form || Assign modal elements to 'content-editable'.
+        3. Set New values to local storage.
+        4. Update current list element with new data values.
+
+*/
+
+
+
 // select the form [ edit ]
 let editForm = document.querySelector('.editForm');
 // remove the form [ edit ] : default properties

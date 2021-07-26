@@ -1,3 +1,25 @@
+/*  
+    list functions & properties
+
+        1. Removes list from view by default
+        2. Sets a counter variable, with a value of 0 ( zero ).
+        
+    populateStorage
+        1. Test application route [ form ] ==> [ function : populate storage ]
+        2. Set the current values of the form to local storage.
+        3. Once data is processed, initiate the displayList function.
+
+    displayList
+        1. Test application route [ storage ] ==> [ function : display list ]
+        2. Update the counter value to use for list ID creation & assignment.
+        3. Creates a HTML < li > parent element, as well as 3 data elements.
+        4. Assign local storage values to data elements ( title, description, payment).
+        5. Appends the data element to the li parent. Append li parent to HTML list element.
+        6. Resets the current form input element values.
+        7. Initiates the checkState function for grid or flex property assignment.
+        8. Initiates the editForm function for displaying the editing module element.
+*/
+
 // apply default list state
 list.style.display = 'none';
 
@@ -7,6 +29,9 @@ let counter = 0;
 // function [ populate storage ]
 function populateStorage() {
 
+    // test route
+    console.log('[ validateForm ] ==> [populateStorage ] :  storage has been populated');
+
     // set an ID counter to local storage
     localStorage.setItem('title', document.querySelector('#company').value);
     localStorage.setItem('description', document.querySelector('#description').value);
@@ -14,13 +39,13 @@ function populateStorage() {
 
     // init function [ display list ]
     displayList();    
-
-    // test route [ validateForm --> populateStorage ]
-    console.log('storage has been populated');
 }
 
 // function [ display list ]
 function displayList() {
+
+    // test route
+    console.log('[ populateStorage ] ==> [ displayList ] : list has been displayed');
 
     // update the counter after each display list function iteration
     counter++;
@@ -74,13 +99,6 @@ function displayList() {
     form.style.display = 'none';
     list.style.display = 'flex';
 
-    /* 
-        checks to see if list has more than the specified items, and assigns the container
-        as either grid ( higher value ) or flex ( lower value ).
-
-    */
-    checkState();
-    
     // select form input elements
     let company = document.querySelector('#company');
     console.log('comp as : ' + company.value); // test user input
@@ -95,9 +113,17 @@ function displayList() {
     company.value = '';
     description.value = '';
     payment.value = '';
-    
-    // test route [ populateStorage --> displayList ]
-    console.log('displaying list data elements');
 
+    /* 
+        checks to see if list has more than the specified items, and assigns the container
+        as either grid ( higher value ) or flex ( lower value ).
+
+    */
+   checkState();
+    
+    /*
+        creates a modal element with the current active items values
+        able to delete or edit the existing values.
+    */
     editingForm();
 }
