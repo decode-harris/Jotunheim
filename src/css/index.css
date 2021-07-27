@@ -80,12 +80,7 @@ ul button {
 }
 
 
-.editForm {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background: red;
-}
+
 form .buttons {
     display: flex;
 

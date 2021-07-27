@@ -5,18 +5,17 @@
         1. Selects all 'items' elements created via display list function.
         2. Using a forEach loop to cycle through all 'items'.
         3. Attaches the edit modal function to all 'item' elements.
-
-    editModal
-        1. Display the modal as property flex. 
-        2. Append the modal to the application wrapper.
-        3. Create a exit click event using the 'exit' button
+        4. Display the modal as property flex. 
+        5. Append the modal to the application wrapper.
+        6. Create a exit click event using the 'exit' button
 
     dataModal
-        1. Select current 'items' data
-        2. Select the modal data elements
-        3. Assign the current items data to the modal data elements.
-        4. Set the new data elements as content-editable.
-        5. Attach the modal data elements to the modal.
+        1. Gets variable values passed to function.
+        2. Select current 'items' data
+        3. Select the modal data elements
+        4. Assign the current items data to the modal data elements.
+        5. Set the new data elements as content-editable.
+        6. Attach the modal data elements to the modal.
 */
 
 // application component
@@ -30,6 +29,9 @@ modal.style.display = 'none';
 
 // function [ init modal ] : assign click events
 initModal = () => {
+
+    // test route
+    console.log('[ displayList ] ==> [ initModal ]');
 
     // create the current data variables
     let currentTitle;
@@ -47,6 +49,21 @@ initModal = () => {
         // click event [ items ]
         element.addEventListener('click', ()=> {
 
+            // display modal element as flex
+            modal.style.display = 'flex';
+
+            // append the modal to the app wrapper
+            app.appendChild(modal);
+
+            // select the exit button
+            let exit = document.querySelector('.exit');
+
+            // click event [ exit ] : close modal
+            exit.addEventListener('click', ()=> {
+                // remove modal from view
+                modal.style.display = 'none';
+            });
+
             // set current values to a current + name variable
             currentTitle = element.querySelector('.title').innerHTML;
             currentDesc = element.querySelector('.desc').innerHTML;
@@ -55,47 +72,16 @@ initModal = () => {
             // test
             console.log('current title test: ' + currentTitle);
             
-            // init function [ edit modal ]
-            editModal();
-
-            // init function [ dataModal ]
-            dataModal(currentTitle, currentDesc, currentCost);
+            // init function [ assign data ]
+            assignData(currentTitle, currentDesc, currentCost);
         });
     });
 
 };
 
-// function [ edit modal ] : display the modal element
-editModal = () => {
-
-    // test route [ ]
-    console.log('[ items : click ] ==> [ editModal ]');
-
-    // display modal element as flex
-    modal.style.display = 'flex';
-
-    // append the modal to the app wrapper
-    app.appendChild(modal);
-
-    // select the exit button
-    let exit = document.querySelector('.exit');
-
-    // click event [ exit ] : close modal
-    exit.addEventListener('click', ()=> {
-        // remove modal from view
-        modal.style.display = 'none';
-    });
-
+// function [ assign data ] : assign current data values to data modal
+assignData = (currentTitle, currentDesc, currentCost) => {
     
-
-    
-};
-
-// function [ data modal ] : assign current data values to data modal
-dataModal = (currentTitle, currentDesc, currentCost) => {
-
-    
-
     // test route 
     console.log('[ editModal ] ==> [ dataModal ]');
 
@@ -108,6 +94,19 @@ dataModal = (currentTitle, currentDesc, currentCost) => {
     editTitle.innerHTML = currentTitle;
     editText.innerHTML = currentDesc;
     editCost.innerHTML = currentCost;
+
+    // click event [ edit button ] 
+    editButton.addEventListener('click', ()=> {
+
+        // test 
+        console.log('edit button clicked');
+
+        // init function [ edit list ] : edit.js
+        editList(editTitle, editText, editCost);
+
+    });
+
+    
 
 }
 

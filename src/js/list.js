@@ -110,17 +110,16 @@ function displayList() {
     description.value = '';
     payment.value = '';
 
-    /* 
+   /* 
         checks to see if list has more than the specified items, and assigns the container
         as either grid ( higher value ) or flex ( lower value ).
-
     */
    checkState(); // file : [ states.js ]
 
-   /*
+    /*
         attaches an event listener to all 'items' elements, in which
         the setup parameters are applied to the modal.
-   */
-  initModal(); // file : [ modal.js ]
+    */
+    initModal(); // file : [ modal.js ]
 
 }
