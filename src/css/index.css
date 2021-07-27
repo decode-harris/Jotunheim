@@ -1,8 +1,16 @@
-/* css reset */
+/* CSS reset */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+/* global CSS variables */
+:root {
+     /* dev borders */
+     --wireframe: 2px solid darkblue;
+     --debugging: 2px solid darkred;
+     --component: 2px solid limegreen;
 }
 
 /* app wrapper */
@@ -19,8 +27,11 @@ main {
     align-items: center;
     background: #FFF;
     height: 100%;
+
+    padding: 2rem;
+
     /* dev */
-    border: 2px solid red;
+    border: var(--wireframe);
 }
 
 /* form component [ input view ] */
@@ -32,33 +43,43 @@ form {
     padding: 12%;
     height: 500px;
     width: 100%;
+
     /* dev */
-    border: 2px solid darkblue;
+    border: var(--component);
 }
 form label {
     padding: 10px 0px;
     font-size: 1.4em;
     text-transform: capitalize;
+
+    /* dev */
+    border: var(--debugging);
 }
 form input {
     height: 45px;
     width: 100%;
     padding-left: 10px;
+    
+
     /* dev */
-    border: 3px solid #000;
+    border: var(--debugging);
 }
 form button,
 ul button {
     border-radius: 10px;
-    font-size: 0.92rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.12rem;
+    color: darkblue;
     font-weight: bold;
     text-transform: uppercase;
     margin-top: 20px;
     height: 35px;
     width: 100%;
     /* dev */
-    border: 3px solid red;
+    border: var(--wireframe);
 }
+
+
 .editForm {
     position: absolute;
     left: 0;
@@ -70,7 +91,7 @@ form .buttons {
 
     width: 100%;
     /* dev */
-    border: 3px solid red;
+    border: var(--wireframe);
 }
 
 
@@ -85,9 +106,8 @@ form .buttons {
     max-width: 500px;
 }
 .list .items {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: minmax(50px, auto);
+    list-style-type: none;
+    border: var(--debugging);
     height: 100%;
     width: 100%;
     z-index: 100;
@@ -95,28 +115,22 @@ form .buttons {
     border: 2px solid red;
 }
 
-.list .active {
+/*
+    change to card [ back ] details tab on production build
+    remove the singular selectors
 
-}
+*/
+.list .items .title,
+.list .items .desc,
+.list .items .pay {
 
-.items span:nth-child(1) { /* company or business name */
-    grid-column-start: 1;
-    grid-column-end: 3;
-}
-.items span:nth-child(2) { /* purchase description */
-    grid-row-start: 2;
-    grid-column-start: 1;
-    grid-column-end: 4;
-}
-.items span:nth-child(3) { /* payment value */
-    grid-column-start: 3;
-    grid-column-end: 4;
+    padding: 3%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    font-size: 1.25rem;
-    font-weight: bold;
+    border: var(--component);
 }
+
+
 .list button {
     position: fixed;
     left: 12%;
@@ -126,19 +140,87 @@ form .buttons {
 }
 
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0%;
-    background: rgba(0, 0, 0, 0.5);
 
-    transition: all 320ms ease-out;
-}
 .active {
     width: 100%;
 
     transition: all 200ms ease-in-out;
 }
 
+
+/* 
+    modal component
+
+    initiates via click event attached to each list 'items' element
+
+*/
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0, 0.9);
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: #FFF;
+}
+.modal .content {
+    height: 100%;
+    width: 100%;    
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    /* dev */   
+    border: var(--wireframe);
+}
+.modal .exit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.modal .buttons {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 10vh;
+    width: 100%;
+    padding: 0.5rem;
+
+    display: flex;
+    justify-content: space-between;
+
+    /* dev */
+    border: var(--debugging);
+}
+.modal .buttons button {
+    width: 33%;
+}
+
+
+.scroll-current {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15vh;
+    width: 100%;
+    /* dev */
+    border: var(--component);
+}
+
+
+.editing-data {
+    padding-left: 2rem;
+    width: 100%;
+
+    /* dev */
+    border: var(--debugging);
+}

@@ -13,8 +13,6 @@
         2. Validates if user has made an entry.
         3. Displays alert & provides helper focus functions to user.
         4. Once input data is validated, initiate the populateStorage function.
-
-    
 */
 
 // main form [ form ]
@@ -38,6 +36,9 @@ submitButton.addEventListener('click', (e)=> {
 
 // function [ validate form ]
 validateForm = () => {
+
+    // test route 
+    console.log('[ submitButton ] ==> [ validateForm ]');
 
     // select form input elements
     let company = document.querySelector('#company');
@@ -86,7 +87,13 @@ validateForm = () => {
         return
     }
     else {
-        // init function [ populate storage ] : app.js
+
+        // remove the class [ active-error ] from the form input elements
+        company.removeAttribute('class', 'active-error');
+        description.removeAttribute('class', 'active-error');
+        payment.removeAttribute('class', 'active-error');
+
+        // init function [ populate storage ] : list.js
         populateStorage();
     }
 

@@ -1,3 +1,22 @@
+/*
+    app functions & properties
+
+    storageAvailable
+        1. Set a storage variable
+        2. Try to test available storage, attempt to set an item into local storage
+        3. Catch any errors pertaining to specific browsers.
+        4. Console log the local storage availability.
+
+    openButton [ change to new-form on production ]
+        1. Display the form.
+        2. Hide the list.
+
+    showButton [ change to show-list on production ]
+        1. Display the list.
+        2. Initiates the function checkState.
+        3. Hide the form.
+*/
+
 // function [ storage available ]
 function storageAvailable(type) {
     let storage;
@@ -46,6 +65,7 @@ let open = document.querySelector('.open'); // change to new-button on final bui
 
 // click event [ open ] : open the form
 open.addEventListener('click', ()=> {
+
     // display the form
     form.style.display = 'flex';
     // hide the list
@@ -62,6 +82,9 @@ show.style.display = 'none';
 
 // click event [ show ] : show the list
 show.addEventListener('click', (e)=> {
+
+    // init function [ check state ] : state.js
+    checkState();
 
     // prevent form submit
     e.preventDefault();

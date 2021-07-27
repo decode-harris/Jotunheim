@@ -8,8 +8,6 @@
         4. Assigns unordered list element to either property 
             display : flex, or property display : grid + grid attributes.
         5. Provides routes testing.
-
-
 */
 
 // function [ check state ] : checks app views

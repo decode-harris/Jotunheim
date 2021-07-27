@@ -84,15 +84,48 @@
             <!-- article [ content ] -->
             <article class="content">
 
-                <!-- article elements -->
-                <h2 class="title"></h2>
-                <p class="text"></p>
-                <p class="cost"></p>
-                <!-- article elements -->
+                <!-- ul [ scroll-current ] -->
+                <ul class="scroll-current">
+                    <!-- only dispaly [ 1 ] current items list -->
+                    <li class="current-items">
+                        <!-- current list elements -->
+                        <span class="current-title"></span>
+                        <span class="current-desc"></span>
+                        <span class="current-cost"></span>
+                        <!-- current list elements -->
+                    </li>
+                    <!-- only dispaly [ 1 ] current items list -->
 
-                <!-- button [ edit ] -->
-                <button class="edit">edit</button>
-                <!-- button [ edit ] -->
+                </ul>
+                <!-- ul [ scroll-current ] -->
+
+                <!-- div [ editing-data ] -->
+                <div class="editing-data">
+
+                    <!-- data [ editing values ] -->
+                    <h2 id="editTitle"></h2>
+                    <p id="editText"></p>
+                    <p id="editCost"></p>
+                    <!-- data [ editing values ] -->
+
+                </div>
+                <!-- div [ editing-data ] -->
+                
+                <!-- buttons -->
+                <div class="buttons">
+                    <!-- button [ delete ] -->
+                    <button class="delete" id="delete">delete</button>
+                    <!-- button [ delete ] -->
+
+                    <!-- button [ edit ] -->
+                    <button class="edit">edit</button>
+                    <!-- button [ edit ] -->
+
+                    <!-- button [ save ] -->
+                    <button class="save" id="save">save</button>
+                    <!-- button [ save ] -->
+                </div>
+                <!-- buttons -->
 
 
                 <!-- edit form -->
@@ -106,20 +139,7 @@
                     <label for="paymentEdit">payment</label>
                     <input type="number" name="paymentEdit" id="paymentEdit" placeholder="$ ">
                     <!-- label + input -->
-
-                   <!-- buttons -->
-                    <div class="buttons">
-                        <!-- button [ save ] -->
-                        <button class="save" id="save">save</button>
-                        <!-- button [ save ] -->
-
-                        <!-- button [ delete ] -->
-                        <button class="delete" id="delete">delete</button>
-                        <!-- button [ delete ] -->
-                    </div>
-                    <!-- buttons -->
-                    
-
+                
                 </form>
                 <!-- edit form -->
             </article>

@@ -54,10 +54,6 @@ function displayList() {
     let id = 'x' + counter;
     console.log(id);
 
-    // create an overlay element
-    let span = document.createElement('span');
-    span.classList = 'overlay';
-
     // test local storage has set items values
     console.log(localStorage.getItem('title'));
     console.log(localStorage.getItem('description'));
@@ -91,7 +87,7 @@ function displayList() {
     items.appendChild(title);
     items.appendChild(desc);
     items.appendChild(pay);
-    items.appendChild(span);
+    
     // append items to un-ordered list element
     list.appendChild(items);
     
@@ -119,11 +115,12 @@ function displayList() {
         as either grid ( higher value ) or flex ( lower value ).
 
     */
-   checkState();
-    
-    /*
-        creates a modal element with the current active items values
-        able to delete or edit the existing values.
-    */
-    editingForm();
+   checkState(); // file : [ states.js ]
+
+   /*
+        attaches an event listener to all 'items' elements, in which
+        the setup parameters are applied to the modal.
+   */
+  initModal(); // file : [ modal.js ]
+
 }
