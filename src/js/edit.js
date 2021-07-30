@@ -1,31 +1,64 @@
-/*
-    Edit Functions & Properties
+const editButton = document.querySelector('#editButton');// select the button [ edit button ]
 
-    editList
-        1. Gets editable values passed into the function.
-        2. Sets all editable values to content-editable = true.
-        3. Focus on the top editable element.
-        4. Re-assign edited data to local storage.
-        5. 
-*/
+let span = document.querySelectorAll('.editing-data span');// select all span elements
+let editing = 'editing-active';// set an editing variable
 
-// select the edit button
-const editButton = document.querySelector('#editButton');
+// click event [ edit button ] 
+editButton.addEventListener('click', ()=> {
 
-// function [ edit list ]
-editList = (editTitle, editText, editCost) => {
+    // init function [ edit list ] : actions.js
+    editList();
+
+});
+
+// function [ edit list ] : initiated via [ edit button ] event
+editList = (currentID) => {
+
+    let itemsID = currentID;
+
+    // test values
+    console.log('[ edit list ] data pass-through : ' + itemsID);
 
     // test route
     console.log('[ edit button ] ==> [ edit list ]');
-    
-    // set all modal data values to content editable
-    editTitle.setAttribute('contenteditable', 'true');
-    editText.setAttribute('contenteditable', 'true');
-    editCost.setAttribute('contenteditable', 'true');
+
+    // forEach [ span ]
+    span.forEach(element => {
+
+        // remove the active class list [ editing ]
+        element.classList.remove(editing);
+
+        // click event [ span ]
+        element.addEventListener('click', ()=> {
+            // test route 
+            console.log('[ click event ] ==> [ editSpan ]');
+
+            // re-init function [ edit list ]
+            editList(currentID);
+            
+            // validate if class list is active [ editing ]
+            if (element.classList != editing) {
+                // apply the active class list to the current clicked element
+                element.classList.add(editing);
+            }
+            else {
+                // remove the active class list [ editing ]
+                element.classList.remove(editing);
+            }
+        });
+        
+        // set all span elements on modal to [ content editable ]
+        element.setAttribute('contenteditable', 'true');
+
+    });
 
     // focus the first data element [ title ]
     editTitle.focus();
 
-    // re-assign new values to local storage
+    // add the active class list to the first data element [ title ]
+    editTitle.classList.add(editing);
+    
+    // init function [ save list ]
+    saveList();
 
 }
