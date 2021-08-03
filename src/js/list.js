@@ -51,35 +51,14 @@ let counter = 0;
 // select the save button
 const saveButton = document.querySelector('#saveButton');
 
-// function [ listDefaults ] : 
-listDefaults = (id) => {
-
-    // select all [ list ] item elements
-    let items = document.querySelectorAll('.items');
-
-    // forEach [ items ]
-    items.forEach(element => {
-
-        // click event [ items ]
-        element.addEventListener('click', ()=> {
-
-            // test
-            console.log('element clicked');
-
-        });
-    });
-}
-
 // function [ populate storage ]
 populateStorage = () => {
 
     // test route
     console.log('[ validateForm ] ==> [ populateStorage ] :  storage has been populated');
 
-    // set validated items to local storage
-    localStorage.setItem('title', document.querySelector('#company').value);
-    localStorage.setItem('description', document.querySelector('#description').value);
-    localStorage.setItem('payment', document.querySelector('#payment').value);
+    // set validate items to local storage
+    localStorage.setItem('projectTitle', document.querySelector('#one').value);
 
     // init function [ listCreate ]
     listCreate();
@@ -90,6 +69,9 @@ listCreate = () => {
 
     // test route
     console.log('[ populateStorage ] ==> [ listCreate ] : create a new list component');
+
+    // init function [ buttonDefaults ]
+    buttonDefaults();
 
     // update the counter after each display list function iteration
     counter++;
@@ -106,34 +88,30 @@ listCreate = () => {
     items.classList = 'items';
 
     // create list data [ local storage ] elements
-    let title = document.createElement('span');
-    let desc = document.createElement('span');
-    let cost = document.createElement('span');
-
-    // set class names for list data
-    title.classList = 'title';
-    desc.classList = 'desc';
-    cost.classList = 'cost';
+    let one = document.createElement('span');
+    let two = document.createElement('span');
+    let three = document.createElement('span');
 
     // set list data values
-    title.innerHTML = localStorage.getItem('title');
-    desc.innerHTML = localStorage.getItem('description');
-    cost.innerHTML = localStorage.getItem('payment');
+    one.innerHTML = localStorage.getItem('projectTitle');
 
+    // set class names for list data
+    one.classList = 'projectTitle';
+    
     // append list data values to items element
-    items.appendChild(title);
-    items.appendChild(desc);
-    items.appendChild(cost);
+    items.appendChild(one);
+    items.appendChild(two);
+    items.appendChild(three);
     
     // append items to un-ordered list element
     list.appendChild(items);
 
     // init function [ displayList ]
-    displayList(title);
+    displayList(one);
 }
 
 // function [ displayList ] : display the list component
-displayList = (title) => {
+displayList = (one) => {
 
     // test route
     console.log('[ populateStorage ] ==> [ displayList ] : displaying the list component');
@@ -143,23 +121,14 @@ displayList = (title) => {
 
     // display the list element
     list.style.display = 'flex';
-
-    // select form input elements
-    let company = document.querySelector('#company');
-    console.log('comp as : ' + company.value); // test user input
     
-    let description = document.querySelector('#description');
-    console.log('desc as : ' + description.value);// test user input
-    
-    let payment = document.querySelector('#payment');
-    console.log('paym as : ' + payment.value);// test user input
+    // reset form input elements
+    one.value = '';
 
-    // reset form values back to default [ empty ]
-    company.value = '';
-    description.value = '';
-    payment.value = '';
+    // init function [ listEvents ]
+    listEvents();
 
-   /* 
+    /* 
         checks to see if list has more than the specified items, and assigns the container
         as either grid ( higher value ) or flex ( lower value ).
     */
@@ -169,17 +138,60 @@ displayList = (title) => {
         attaches an event listener to all 'items' elements, which provides reactive element
         parameters & properties.
     */
-    activeList(id, title);
+    activeList(id);
 
 }
+
+// function [ listEvents ]
+listEvents = () => {
+
+    // test route
+    console.log('[ displayList ] ==> [ listEvents ] : add an active class to items element');
+    
+    // select the list element
+    // var header = document.getElementById("list");
+    var items = list.getElementsByClassName("items");
+
+    // for loop [ items ]
+    for (let i = 0; i < items.length; i++) {
+
+        // click event [ items ]
+        items[i].addEventListener("click", function() {
+
+            // select the current active item
+            var current = document.getElementsByClassName("active");
+
+            // validate length of current active item
+            if (current.length > 0) { 
+                // replace first node [ 0 ] className with empty string
+                current[0].className = current[0].className.replace(" active", "");
+            }
+
+            // apply the active className to this element
+            this.className += " active";
+
+            // init function [ buttons ]
+            operationButtons();
+        });
+    }
+}
+
 // function [ active list ] : apply the list 'active' properties class
-activeList = (id, title) => {
+activeList = (id) => {
+
     // test route
     console.log('[ displayList ] ==> [ activeList ] : assigned active list properties');
+    
+    // select & remove the [ actionButtons ] container
+    let actionButtons = document.querySelector('#actionButtons');
+    // actionButtons.style.display = 'flex';
 
-    // select the button container elements
-    let operations = document.querySelector('#operations');
-    let actions = document.querySelector('#actions');
+    // select & remove the [ operationButtons ] container
+    let operationButtons = document.querySelector('#operationButtons');
+    operationButtons.style.display = 'none';
+
+    // apply the style property visibility : visible to operations element
+    operationButtons.style.visibility = 'visible';
 
     // select all [ items ] span elements
     let span = document.querySelectorAll('.items span');
@@ -192,60 +204,35 @@ activeList = (id, title) => {
             element.setAttribute('contenteditable', 'true');
         });
     });
+
     // test
     console.log(span);
 
-    // select all list [ items ] elements
-    let items = document.querySelectorAll('.items');
+    // click event [ save button ]
+    saveButton.addEventListener('click', ()=> {
 
-    // forEach [ items ]
-    items.forEach(element => {
+        // select the active list element
+        let active = document.querySelector('#list .active');
 
-        // click event [ items ]
-        element.addEventListener('click', ()=> {
+        // validate if element has been assigned an active class
+        if (active.classList === 'active') {
 
-            // validate if element is 'isActive'
-            if (element.id != 'isActive') {
-                // assign element id as 'isActive'
-                element.id = 'isActive';
+            // if not, assign element active class
+            active.classList.remove('active');
 
-                // set current title as content editable
-                title.setAttribute('contenteditable', 'true');
-                // focus the current title element
-                title.focus();
-
-                // remove the action buttons from view
-                actions.style.display = 'none';
-
-                // apply the style property visibility : visible to operations element
-                operations.style.visibility = 'visible';
-
-                // append the button container to the active element
-                element.appendChild(operations);
-            }
-        });
-
-        // click event [ save button ]
-        saveButton.addEventListener('click', ()=> {
-
-            // validate element id
-            if (element.id != id) {
-                // set element id as passed-in id
-                element.id = id;
-                // test event
-                console.log('[ save button ] : element ID = ' + element.id);
-            }
-
-            // reset title attribute [ content editable ] to false
-            title.setAttribute('contenteditable', 'fasle');
-            
-            // set timeout of 500ms to initiate function [ saveList ]
-            setTimeout(() => {
-                // init function [ saveList ]
-                saveList(id);
-            }, 500);
+            // test element
+            console.log(active);
+        }
         
-        });
+        // reset title attribute [ content editable ] to false
+        one.setAttribute('contenteditable', 'fasle');
+        
+        // set timeout of 500ms to initiate function [ saveList ]
+        setTimeout(() => {
+            // init function [ saveList ]
+            saveList(id);
+        }, 500);
+    
     });
 };
 
@@ -253,16 +240,9 @@ activeList = (id, title) => {
 saveList = (id) => {
     // test route
     console.log('[ activeList ] ==> [ saveList ] : save updated or edited values');
-
-    // select all list [ items ]
-    let items = document.querySelectorAll('.items');
-
-    // forEach [ items ]
-    items.forEach(element => {
-
-        // reset element id back to default
-        element.id = id;
-    });
+    
+    // init function [ actionButtons ]
+    actionButtons();
 
     // select all [ items ] span elements
     let span = document.querySelectorAll('.items span');
