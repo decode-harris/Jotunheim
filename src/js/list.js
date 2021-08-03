@@ -211,19 +211,6 @@ activeList = (id) => {
     // click event [ save button ]
     saveButton.addEventListener('click', ()=> {
 
-        // select the active list element
-        let active = document.querySelector('#list .active');
-
-        // validate if element has been assigned an active class
-        if (active.classList === 'active') {
-
-            // if not, assign element active class
-            active.classList.remove('active');
-
-            // test element
-            console.log(active);
-        }
-        
         // reset title attribute [ content editable ] to false
         one.setAttribute('contenteditable', 'fasle');
         
@@ -231,7 +218,9 @@ activeList = (id) => {
         setTimeout(() => {
             // init function [ saveList ]
             saveList(id);
-        }, 500);
+        }, 200);
+
+        // return
     
     });
 };
@@ -243,6 +232,21 @@ saveList = (id) => {
     
     // init function [ actionButtons ]
     actionButtons();
+
+    // select the active list element
+    let active = document.querySelector('#list .active');
+        
+    // // validate if element has been assigned an active class
+    if (active.classList === 'active') {
+        // if not, assign element active class
+        active.classList.remove('active');    
+
+        // test element
+        console.log('element is active : ' + active);
+    }
+    else {
+        active.classList = 'items';
+    }
 
     // select all [ items ] span elements
     let span = document.querySelectorAll('.items span');
