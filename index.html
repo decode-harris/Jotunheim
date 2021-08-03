@@ -10,7 +10,7 @@
     <title>Payment Tracking Solutions</title>
     
     <!-- css -->
-    <link rel="stylesheet" href="src/css/index.css">
+    <link rel="stylesheet" href="src/css/output.css">
 
     <!-- javascript [ app ] -->
     <script defer src="src/js/app.js"></script>
@@ -24,16 +24,7 @@
     <!-- javascript [ list ] -->
     <script defer src="src/js/list.js"></script>
 
-    <!-- javascript [ modal ] -->
-    <script defer src="src/js/modal.js"></script>
-
-    <!-- javascript [ edit ] -->
-    <script defer src="src/js/edit.js"></script>
-
-    <!-- javascript [ test ] -->
-    <script defer src="dev.test.js"></script>
-
-
+    
 </head>
 <body>
 
@@ -43,114 +34,101 @@
         <!-- main -->
         <main class="main">
 
-            <!-- form -->
-            <form action="" class="form">
+            <!-- section [ home ] -->
+            <section class="container" id="home">
 
-                <!-- label + input -->
-                <label for="company">company</label>
-                <input type="text" name="company" id="company">
-                <label for="description">description</label>
-                <input type="text" name="description" id="description">
-                <label for="payment">payment</label>
-                <input type="number" name="payment" id="payment" placeholder="$ ">
-                <!-- label + input -->
+                <!-- placeholder title -->
+                <h1>homepage</h1>
+                <!-- placeholder title -->
 
-                <!-- form button [ btn ] -->
-                <button class="btn" id="submitButton">submit</button>
-                <!-- form button [ btn ] -->
+                <!-- btn [ start button ] -->
+                <button class="btn" id="startButton">start</button>
+                <!-- btn [ start button ] -->
 
-                <!-- form button [ show ] : hidden by default -->
-                <button class="show">list</button>
-                <!-- form button [ show ] : hidden by default -->
+            </section>
+            <!-- section [ home ] -->
+
+            <!-- section [ load ] -->
+            <section class="container" id="load">
+
+                <!-- div [ loading ] -->
+                <div class="loading">
+                    <!-- placeholder title -->
+                    <h1>loading</h1>
+                    <!-- placeholder title -->
+
+                    
+                    <!-- animated loading icon --><!-- animated loading icon -->
+
+                </div>
+                <!-- div [ loading ] -->
+
+            </section>
+            <!-- section [ load ] -->
+
+            <!-- form [ form ] : hidden by default -->
+            <form action="" class="form" id="form">
+
+                <!-- labe + input [ validation testing ] -->
+                <label for="one">project title</label>
+                <input type="text" name="one" id="one">
+                <!-- labe + input [ validation testing ] -->
+                
+
+                <!-- wrapper [ buttons ] -->
+                <div class="buttons">
+                    <!-- form button [ btn ] -->
+                    <button class="btn" id="submitButton">submit</button>
+                    <!-- form button [ btn ] -->
+
+                    <!-- form button [ show ] : hidden by default -->
+                    <button class="show">list</button>
+                    <!-- form button [ show ] : hidden by default -->
+                </div>
+                <!-- wrapper [ buttons ] -->
             
             </form>
-            <!-- form -->
+            <!-- form [ form ] : hidden by default -->
 
             <!-- unordered list [ list ] : hidden by default -->
-            <ul class="list">
-                
-                <!-- btn [ open ] -->
-                <button class="open">open</button>
-                <!-- btn [ open ] -->
+            <ul class="list" id="list">
+
+                <!-- buttons -->
+                <div class="buttons">
+
+                    <!-- button sets [ action ] -->
+                    <div class="button-sets" id="actionButtons">
+                        <!-- btn [ new list button ] -->
+                        <button class="btn" id="newButton">new list</button>
+                        <!-- btn [ open ] -->
+
+                        <!-- btn [ help button ] -->
+                        <button class="btn" id="listButton">help / support</button>
+                        <!-- btn [ help button ] -->
+                    </div>
+                    <!-- button sets [ actions ] -->
+
+                    <!-- button sets [ operations ] -->
+                    <div class="button-sets" id="operationButtons">
+                        <!-- button [ delete ] -->
+                        <button class="delete" id="delButton">delete</button>
+                        <!-- button [ delete ] -->
+
+                        <!-- button [ save ] -->
+                        <button class="save" id="saveButton">save</button>
+                        <!-- button [ save ] -->
+                    </div>
+                    <!-- button sets [ operations ] -->
+
+                </div>
+                <!-- buttons -->
 
             </ul>
             <!-- unordered list [ list ] : hidden by default -->
 
         </main>
         <!-- main -->
-
-        <!-- modal -->
-        <div class="modal"> 
-            <!-- article [ content ] -->
-            <article class="content">
-
-                <!-- ul [ scroll-current ] -->
-                <ul class="scroll-current">
-                    <!-- only dispaly [ 1 ] current items list -->
-                    <li class="current-items">
-                        <!-- current list elements -->
-                        <span class="current-title"></span>
-                        <span class="current-desc"></span>
-                        <span class="current-cost"></span>
-                        <!-- current list elements -->
-                    </li>
-                    <!-- only dispaly [ 1 ] current items list -->
-
-                </ul>
-                <!-- ul [ scroll-current ] -->
-
-                <!-- div [ editing-data ] -->
-                <div class="editing-data">
-
-                    <!-- data [ editing values ] -->
-                    <h2 id="editTitle"></h2>
-                    <p id="editText"></p>
-                    <p id="editCost"></p>
-                    <!-- data [ editing values ] -->
-
-                </div>
-                <!-- div [ editing-data ] -->
-                
-                <!-- buttons -->
-                <div class="buttons">
-                    <!-- button [ delete ] -->
-                    <button class="delete" id="delete">delete</button>
-                    <!-- button [ delete ] -->
-
-                    <!-- button [ edit ] -->
-                    <button class="edit" id="editButton">edit</button>
-                    <!-- button [ edit ] -->
-
-                    <!-- button [ save ] -->
-                    <button class="save" id="save">save</button>
-                    <!-- button [ save ] -->
-                </div>
-                <!-- buttons -->
-
-
-                <!-- edit form -->
-                <form action="" class="editForm" style='display:none;'>
-
-                    <!-- label + input -->
-                    <label for="companyEdit">company</label>
-                    <input type="text" name="companyEdit" id="companyEdit">
-                    <label for="descriptionEdit">description</label>
-                    <input type="text" name="descriptionEdit" id="descriptionEdit">
-                    <label for="paymentEdit">payment</label>
-                    <input type="number" name="paymentEdit" id="paymentEdit" placeholder="$ ">
-                    <!-- label + input -->
-                
-                </form>
-                <!-- edit form -->
-            </article>
-            <!-- article [ content ] -->
-
-            <!-- button [ exit ] -->
-            <button class="exit">X</button>
-            <!-- button [ exit ] -->
-        </div>
-        <!-- modal -->
-
+    
     </div>
     <!-- app -->
 
