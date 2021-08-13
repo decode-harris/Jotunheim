@@ -207,23 +207,23 @@ activeList = (id) => {
 
     // test
     console.log(span);
-
-    // click event [ save button ]
-    saveButton.addEventListener('click', ()=> {
-
-        // reset title attribute [ content editable ] to false
-        one.setAttribute('contenteditable', 'fasle');
-        
-        // set timeout of 500ms to initiate function [ saveList ]
-        setTimeout(() => {
-            // init function [ saveList ]
-            saveList(id);
-        }, 200);
-
-        // return
-    
-    });
 };
+
+// click event [ save button ]
+saveButton.addEventListener('click', ()=> {
+
+    // reset title attribute [ content editable ] to false
+    one.setAttribute('contenteditable', 'fasle');
+    
+    // set timeout of 500ms to initiate function [ saveList ]
+    setTimeout(() => {
+        // init function [ saveList ]
+        saveList(id);
+    }, 200);
+
+    // return
+
+});
 
 // function [ save list ] : reset active elements & append edited data values to page
 saveList = (id) => {
@@ -237,7 +237,10 @@ saveList = (id) => {
     let active = document.querySelector('#list .active');
         
     // // validate if element has been assigned an active class
-    if (active.classList === 'active') {
+    if (active.classList != 'active') {
+        active.classList = 'items';
+    }
+    else if (active.classList === 'active') {
         // if not, assign element active class
         active.classList.remove('active');    
 
@@ -247,7 +250,8 @@ saveList = (id) => {
     else {
         active.classList = 'items';
     }
-
+    
+    
     // select all [ items ] span elements
     let span = document.querySelectorAll('.items span');
     
@@ -272,8 +276,23 @@ saveList = (id) => {
 // select the delete button
 const delButton = document.querySelector('#delButton');
 
+delButton.addEventListener('click', (e)=> {
+
+    // test event
+    console.log('[ delButton ] : clicked');
+
+    // prevent any default actions
+    e.preventDefault();
+
+    // init function [ deleteList ]
+    deleteList();
+});
+
 // function [ delete list ]
 deleteList = () => {
+
+
+
     // test route
-    console.log('[ activeList ] ==> [ saveList ]');
+    console.log('[ delButton ] ==> [ deleteList ]');
 }
