@@ -48,9 +48,6 @@ list.style.display = 'none';
 // set a counter for list ID's
 let counter = 0;
 
-// select the save button
-const saveButton = document.querySelector('#saveButton');
-
 // function [ populate storage ]
 populateStorage = () => {
 
@@ -118,6 +115,9 @@ displayList = (one) => {
 
     // init function [ applicationDefaults ] : file // app.js
     applicationDefaults();
+
+    // init function [ actionButtons ] : file // app.js
+    actionButtons();
 
     // display the list element
     list.style.display = 'flex';
@@ -209,19 +209,22 @@ activeList = (id) => {
     console.log(span);
 };
 
+// select the save button
+const saveButton = document.querySelector('#saveButton');
+
 // click event [ save button ]
 saveButton.addEventListener('click', ()=> {
 
-    // reset title attribute [ content editable ] to false
+    // reset list element property [ content editable ] value to false
     one.setAttribute('contenteditable', 'fasle');
     
     // set timeout of 500ms to initiate function [ saveList ]
     setTimeout(() => {
+
         // init function [ saveList ]
         saveList(id);
-    }, 200);
 
-    // return
+    }, 200);
 
 });
 
@@ -258,11 +261,11 @@ saveList = (id) => {
     // forEach [ span ]
     span.forEach(element => {
 
-        // set span element as content editable
-        element.setAttribute('contenteditable', 'false');
-
         // test
         console.log('[ save list ] : span click event = content editable');
+
+        // set span element as content editable
+        element.setAttribute('contenteditable', 'false');
     });
 };
 
@@ -288,11 +291,60 @@ delButton.addEventListener('click', (e)=> {
     deleteList();
 });
 
-// function [ delete list ]
+/*
+    function [ delete list ]
+
+    initiated via [ active ] list item event.
+    delete can only be used via active event.
+
+    1. select all item elements in current list view
+    2. validates if items length is equal to zero
+    3. Reset counter ( id ) if length is 0
+    4. Reassign counter ( id ) if length is not 0
+    5. Remove the active element [ deletion ]
+    6. Reset app to form state if length is 0
+    7. Apply form buttons to button state container
+
+*/
 deleteList = () => {
 
 
+    // select the active element
+    let active = document.querySelector('.active');
 
+    // remove active element
+    active.remove();
+
+    // test active element
+    console.log(active);
+
+    // select all list item elements
+    let items = list.querySelectorAll('.items');
+
+    // validate current items length
+    if (items.length === 0) {
+
+        // test current items length
+        console.log('[ deleteList ] : items length = ' + items.length);
+
+        // init function [ applicationDefaults ] : file // app.js
+        applicationDefaults();
+
+        // init function [ displayForm ] : file // form.js
+        displayForm();
+
+        return
+    }
+    if (items.length >= 1) {
+
+        // test current items length over 1
+        console.log(' deleteList ] : items length > 1 ' + items.length);
+    }
+    
     // test route
     console.log('[ delButton ] ==> [ deleteList ]');
+
+    // test counter
+    console.log('[ delButton ] : counter = ' + (counter - 1));
+
 }

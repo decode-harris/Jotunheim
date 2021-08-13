@@ -220,7 +220,6 @@ buttonDefaults = () => {
 // init function [ buttonDefaults ]
 buttonDefaults();
 
-
 // function [ actionButtons ] : display actions container, remove operations container
 actionButtons = () => {
     console.log('[ actionButtons ] : active'); // test function properties
@@ -252,29 +251,43 @@ show.style.display = 'none';
 // click event [ show ] : show the list
 show.addEventListener('click', (e)=> {
 
-    // init function [ check state ] : state.js
-    checkState();
-
     // prevent form submit
     e.preventDefault();
 
-    // validate if grid properties are present
-    if (list.style.gap === '10px') {
+    let items = list.querySelectorAll('.items');
 
-        // display list as grid
-        list.style.display = 'grid';
+    // validate list items length
+    if (items.length === 0) {
 
-        // test
-        console.log('list is displayed as grid');
+        // user alert [ change to inner html helper element on production ]
+        alert('no created notes in storage');
+
+        displayForm();
     }
     else {
-        // display list as flex
-        list.style.display = 'flex';
-    }
+        // init function [ check state ] : state.js
+        checkState();
 
-    // hide the form
-    form.style.display = 'none';
-    
-    return
+        
+
+        // validate if grid properties are present
+        if (list.style.gap === '10px') {
+
+            // display list as grid
+            list.style.display = 'grid';
+
+            // test
+            console.log('list is displayed as grid');
+        }
+        else {
+            // display list as flex
+            list.style.display = 'flex';
+        }
+
+        // hide the form
+        form.style.display = 'none';
+        
+        return
+    }
 
 });
