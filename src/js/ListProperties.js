@@ -216,6 +216,55 @@ activeList = (id) => {
     console.log(span);
 };
 
+
+
+// select the button [ viewList ] on the user form element
+let viewList = document.querySelector('.show'); // change to new-form on final build
+// apply default button state
+viewList.style.display = 'none';
+
+// click event [ viewList ] button
+viewList.addEventListener('click', (e)=> {
+
+    // prevent form submit
+    e.preventDefault();
+
+    let items = list.querySelectorAll('.items');
+
+    // validate list items length
+    if (items.length === 0) {
+
+        // user alert [ change to inner html helper element on production ]
+        alert('no created notes in storage');
+
+        displayForm();
+    }
+    else {
+        // init function [ check state ] : state.js
+        checkState();
+        
+        // validate if grid properties are present
+        if (list.style.gap === '10px') {
+
+            // display list as grid
+            list.style.display = 'grid';
+
+            // test
+            console.log('list is displayed as grid');
+        }
+        else {
+            // display list as flex
+            list.style.display = 'flex';
+        }
+
+        // hide the form
+        form.style.display = 'none';
+        
+        return
+    }
+});
+
+
 // select the save button
 const saveButton = document.querySelector('#saveButton');
 
@@ -295,8 +344,7 @@ delButton.addEventListener('click', (e)=> {
 
 // function [ deleteList ]
 deleteList = () => {
-
-
+    
     // select the active element
     let active = document.querySelector('.active');
 
