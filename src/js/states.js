@@ -20,7 +20,7 @@ checkState = () => {
     let items = document.querySelectorAll('.list .items');
 
     // check the number of items created
-    if (items.length > 2 && items.length < 4) {
+    if (items.length > 2 && items.length <= 4) {
 
         // set list style display as flex [ default display properties ]
         list.style.display = 'flex';

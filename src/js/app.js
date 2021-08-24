@@ -184,21 +184,8 @@ buttonControls = () => {
         // test validation
         console.log('[ buttonControls ] : list = flex');
 
-        // set actions buttons container
-        // actionButtons.style.display = 'flex';
-        // operationButtons.style.display = 'none';
-
-        // buttons.appendChild(actionButtons);
-
-
         return
     }
-    // else if (active.style.display === 'flex') {
-
-    //     // set operation buttons container
-
-    //     return
-    // }
     else {
 
         console.log('[ buttonControls ] : validated');
@@ -267,9 +254,7 @@ show.addEventListener('click', (e)=> {
     else {
         // init function [ check state ] : state.js
         checkState();
-
         
-
         // validate if grid properties are present
         if (list.style.gap === '10px') {
 
@@ -289,5 +274,4 @@ show.addEventListener('click', (e)=> {
         
         return
     }
-
 });

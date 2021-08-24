@@ -1,6 +1,5 @@
 /*  
     List Functions & Properties
-
         1. Removes list from view by default
         2. Sets a counter variable, with a value of 0 ( zero ).
         
@@ -30,10 +29,15 @@
         2. Assign edited data vales as the new data values.
         3. Remove the active list element className.
 
-    deleteList
-        1. Remove current values from local storage.
-        2. Remove the list values and/or list element from view.
-        3. Remove the active list element className.
+    delete list
+        1. select all item elements in current list view
+        2. validates if items length is equal to zero
+        3. Reset counter ( id ) if length is 0
+        4. Reassign counter ( id ) if length is not 0
+        5. Remove the active element [ deletion ]
+        6. Reset app to form state if length is 0
+        7. Apply form buttons to button state container
+
 */
 
 // select the unordered list [ list ] for appending new items
@@ -202,6 +206,9 @@ activeList = (id) => {
         element.addEventListener('click', ()=> {
             // reset data elements back to [ content editable ] = false
             element.setAttribute('contenteditable', 'true');
+
+            let title = element.querySelector('.projectTitle');
+            title.focus(); // focus the now content editable span element
         });
     });
 
@@ -269,17 +276,12 @@ saveList = (id) => {
     });
 };
 
-/*  
-    ========== [ WORK-IN-PROGRESS ] ==========
-    delete button 
-    remove the current active element from the page
-    ========== [ WORK-IN-PROGRESS ] ==========
-*/
-
 // select the delete button
 const delButton = document.querySelector('#delButton');
 
 delButton.addEventListener('click', (e)=> {
+
+    checkState(); // calculates the current list item elements
 
     // test event
     console.log('[ delButton ] : clicked');
@@ -291,21 +293,7 @@ delButton.addEventListener('click', (e)=> {
     deleteList();
 });
 
-/*
-    function [ delete list ]
-
-    initiated via [ active ] list item event.
-    delete can only be used via active event.
-
-    1. select all item elements in current list view
-    2. validates if items length is equal to zero
-    3. Reset counter ( id ) if length is 0
-    4. Reassign counter ( id ) if length is not 0
-    5. Remove the active element [ deletion ]
-    6. Reset app to form state if length is 0
-    7. Apply form buttons to button state container
-
-*/
+// function [ deleteList ]
 deleteList = () => {
 
 
@@ -324,8 +312,20 @@ deleteList = () => {
     // validate current items length
     if (items.length === 0) {
 
+        // ForEach [ items ] : select all items and reset their ID's
+        items.forEach(element => {
+
+            // reset all items ID
+            element.id = '';
+
+            console.log('[ reset element ID ] : for each loop');
+        });
+
         // test current items length
         console.log('[ deleteList ] : items length = ' + items.length);
+
+        // 3. Reset couter if items length is zero
+        counter = 0;
 
         // init function [ applicationDefaults ] : file // app.js
         applicationDefaults();
@@ -335,16 +335,55 @@ deleteList = () => {
 
         return
     }
-    if (items.length >= 1) {
+    if (items.length === 1) {
 
+        // assign counter value to 1 [ reset list to one item ]
+        counter = 1;
+
+        // ForEach [ items ] : select all items and reset their ID's
+        items.forEach(element => {
+            
+            // reset all items ID
+            element.id = 'x' + counter++;
+
+            console.log('[ reset element ID ] : for each loop');
+        });
+        
         // test current items length over 1
-        console.log(' deleteList ] : items length > 1 ' + items.length);
+        console.log('[ deleteList ] : items length = ' + items.length + ' & ' + items[0].id);
+
+        // init function [ actionButtons ] : file // app.js
+        actionButtons();
+
+        return
+    }
+    if (items.length >= 2) {
+
+        // init function [ actionButtons ] : file // app.js
+        actionButtons();
+        
+        // test
+        console.log('more than 2 items [ delete List ] : if statement');
+    }   
+    else {
+
+        // init function [ actionButtons ] : file // app.js
+        actionButtons();
+
+        items.forEach(element => {
+
+            // reset all element ID's to an empty string
+            element.id = '';
+            
+            // update the counter variable
+            counter++;
+
+            // assign all element ID's as [ letter x + counter value ]
+            element.id = 'x' + counter;
+        });
+        console.log('no parameters met [ delete List ] if else');
     }
     
     // test route
     console.log('[ delButton ] ==> [ deleteList ]');
-
-    // test counter
-    console.log('[ delButton ] : counter = ' + (counter - 1));
-
 }
