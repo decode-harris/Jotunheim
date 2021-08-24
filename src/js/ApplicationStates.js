@@ -38,6 +38,8 @@ checkState = () => {
         list.style.padding = '10px';
         list.style.overflow = 'scroll';
 
+        items.style.flexDirection = 'column';
+
         let lastItem = list.lastChild;
         lastItem.style.marginBottom = '10vh';
 

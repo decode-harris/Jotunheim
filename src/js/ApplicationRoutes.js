@@ -45,6 +45,7 @@ loadingScreen = () => {
 
 // select [ startApplication ] button
 let startApplication = document.querySelector('#startApplication');
+let status;
 
 // click event [ startApplication ]
 startApplication.addEventListener('click', ()=> {
@@ -55,6 +56,8 @@ startApplication.addEventListener('click', ()=> {
     // init function [ applicationDefaults ] : clear application state view
     applicationDefaults();
 
+    status = 'loading';
+
     // init function [ loadingScreen ] : display the loading screen element
-    loadingScreen();
+    loadingScreen(status); // 
 });

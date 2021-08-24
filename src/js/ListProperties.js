@@ -59,7 +59,9 @@ populateStorage = () => {
     console.log('[ validateForm ] ==> [ populateStorage ] :  storage has been populated');
 
     // set validate items to local storage
-    localStorage.setItem('projectTitle', document.querySelector('#one').value);
+    localStorage.setItem('institution', document.querySelector('#one').value);
+    localStorage.setItem('description', document.querySelector('#two').value);
+    localStorage.setItem('payment', document.querySelector('#three').value);
 
     // init function [ listCreate ]
     listCreate();
@@ -93,26 +95,35 @@ listCreate = () => {
     let two = document.createElement('span');
     let three = document.createElement('span');
 
+    // create the current logo [ dollars ]
+    let currency = document.createElement('span');
+    currency.innerHTML = '$ ';
+
     // set list data values
-    one.innerHTML = localStorage.getItem('projectTitle');
+    one.innerHTML = localStorage.getItem('institution');
+    two.innerHTML = localStorage.getItem('description');
+    three.innerHTML = localStorage.getItem('payment');
 
     // set class names for list data
-    one.classList = 'projectTitle';
+    one.classList = 'institution';
+    two.classList = 'description';
+    three.classList = 'payment';
     
     // append list data values to items element
     items.appendChild(one);
     items.appendChild(two);
+    items.appendChild(currency);
     items.appendChild(three);
-    
+
     // append items to un-ordered list element
     list.appendChild(items);
 
     // init function [ displayList ]
-    displayList(one);
+    displayList(one, two, three);
 }
 
 // function [ displayList ] : display the list component
-displayList = (one) => {
+displayList = (one, two, three) => {
 
     // test route
     console.log('[ populateStorage ] ==> [ displayList ] : displaying the list component');
@@ -128,6 +139,8 @@ displayList = (one) => {
     
     // reset form input elements
     one.value = '';
+    two.value = '';
+    three.value = '';
 
     // init function [ listEvents ]
     listEvents();

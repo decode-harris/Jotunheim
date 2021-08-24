@@ -58,19 +58,26 @@ validateForm = () => {
     let one = document.querySelector('#one');
 
     if (one.value === '') {
-        alert('please enter a project name');
+        alert('please enter a payment institution.');
 
-        // focus the error element
-        one.focus();
+        one.focus(); // focus the error element
 
-        // return
+    }
+    else if (two.value === '') {
+        alert('Please enter a payment description.');
+
+        two.focus(); // focus the error element
+    
+    }
+    else if (three.value === '') {
+        alert('Please enter a payment cost.');
+
+        three.focus(); // focus the error element
+
     }
     else {
 
-        // remove the class [ active-error ] from the form input elements
-        // company.removeAttribute('class', 'active-error');
-        // description.removeAttribute('class', 'active-error');
-        // payment.removeAttribute('class', 'active-error');
+        uploadingScreen(); // file : [ CalculateData.js ]
 
         // test route [ click event --> validateForm ]
         console.log('validation success');
@@ -79,101 +86,6 @@ validateForm = () => {
         populateStorage();
     }
 
-    // // select the name & description for new project
-    // let projectName = document.querySelector('#project-name');
-    // let projectDescription = document.querySelector('#project-description');
-
-    // // select the project type select option
-    // let projectType = document.querySelector('#project-type');
-
-    // // select the project progress percentage value
-    // let projectProgress = document.querySelector('#project-progress');
-
-    // // select the boolean checkbox input elements
-    // let uploadYes = document.querySelector('#upload-yes');
-    // let uploadNo = document.querySelector('#upload-no');
-
-    // if ( projectName.value === '' || projectName.value === null) {
-    //     // alert the user to the current error
-    //     alert('please enter a project name or title');
-    //     // set focus to the error element
-    //     projectName.focus();
-    //     // set input with class as active error
-    //     projectName.setAttribute('class', 'active-error');
-
-
-    //     return    
-    // }
-    // else if ( projectDescription.value === '' || projectDescription.value === null) {
-    //     // alert the user to the current error
-    //     alert('please enter a project description or tagline');
-    //     // set focus to the error element
-    //     projectDescription.focus();
-    //     // set input with class as active error
-    //     projectDescription.setAttribute('class', 'active-error');
-
-    //     return    
-    // }
-    // else if ( projectProgress) {
-    //     // form slider elements
-    //     let slider = document.querySelector('#project-progress');
-    //     let output = document.querySelector('#progress-value');
-    //     output.innerHTML = slider.value;
-
-    //     slider.oninput = function() {
-    //         output.innerHTML = this.value;
-
-
-    //     }
-    // }
-
-    
-    // // select form input elements
-    // let company = document.querySelector('#company');
-    // console.log('comp as : ' + company.value); // test user input
-    
-    // let description = document.querySelector('#description');
-    // console.log('desc as : ' + description.value);// test user input
-    
-    // let payment = document.querySelector('#payment');
-    // console.log('paym as : ' + payment.value);// test user input
-
-    // // validate if company value is empty
-    // if (company.value === '' || company.value === null) {
-
-    //     // alert the user to the current error
-    //     alert('please enter the company or business name');
-    //     // set focus to the error element
-    //     company.focus();
-    //     // set input with class as active error
-    //     company.setAttribute('class', 'active-error');
-
-    //     return
-    // }
-    // // validate if description value is empty
-    // else if (description.value === '' || description.value === null) {
-
-    //     // alert the user to the current error
-    //     alert('please enter the payment description or item of purchase');
-    //     // set focus to the error element
-    //     description.focus();
-    //     // set input with class as active error
-    //     description.setAttribute('class', 'active-error');
-
-    //     return
-    // }
-    // // validate if payment value is empty
-    // else if (payment.value === '' || payment.value === null) {
-
-    //     // alert the user to the current error
-    //     alert('please enter the payment amount');
-    //     // set focus to the error element
-    //     payment.focus();
-    //     // set input with class as active error
-    //     payment.setAttribute('class', 'active-error');
-
-    //     return
-    // }
 }
 
 // select [ newForm ] button
